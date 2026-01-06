@@ -108,7 +108,7 @@ const UserProfile = () => {
                   <div className="flex flex-col items-center text-center">
                     <div className="relative">
                       <Avatar className="w-24 h-24">
-                        <AvatarImage src="https://i.pravatar.cc/40?img=68" alt="Anna" />
+                        <AvatarImage src="https://i.pravatar.cc/200?img=68" alt="Anna" />
                         <AvatarFallback>A</AvatarFallback>
                       </Avatar>
                       <Button variant="ghost" size="icon" className="absolute -right-2 -top-2">

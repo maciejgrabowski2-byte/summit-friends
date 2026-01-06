@@ -78,7 +78,7 @@ const Navbar = () => {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Avatar className="w-8 h-8 cursor-pointer">
-                  <AvatarImage src="https://i.pravatar.cc/40?img=68" alt="User" />
+                  <AvatarImage src="https://i.pravatar.cc/200?img=68" alt="User" />
                   <AvatarFallback>U</AvatarFallback>
                 </Avatar>
               </DropdownMenuTrigger>
