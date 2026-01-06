@@ -164,11 +164,12 @@ const EventsList = () => {
         <div key={dateGroup}>
           {/* Date Header */}
           <div className="flex items-center gap-4 mb-4">
-            <h2 className="text-lg font-semibold text-foreground whitespace-nowrap">{dateGroup}</h2>
-            <div className="hidden sm:grid grid-cols-3 gap-4 flex-1 text-sm text-muted-foreground">
-              <span>Departing from</span>
-              <span>Activity</span>
-              <span className="text-right">Participants</span>
+            <h2 className="text-lg font-semibold text-foreground whitespace-nowrap sm:w-16 shrink-0">{dateGroup}</h2>
+            <div className="hidden sm:flex flex-1 text-sm text-muted-foreground">
+              <div className="flex-1 min-w-0"></div>
+              <span className="w-32 shrink-0">Departing from</span>
+              <span className="w-48 shrink-0">Activity</span>
+              <span className="w-40 shrink-0 text-right">Participants</span>
             </div>
           </div>
           
