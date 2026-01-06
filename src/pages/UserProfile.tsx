@@ -101,7 +101,7 @@ const UserProfile = () => {
           {/* Desktop Layout - Two columns */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Left Column - Profile Info */}
-            <div className="lg:col-span-1 space-y-6">
+            <div className="lg:col-span-1 space-y-6 w-full max-w-[300px] mx-auto lg:mx-0">
               {/* Profile Header */}
               <Card className="border-0 bg-[#F2F3F6]">
                 <CardContent className="pt-6">
