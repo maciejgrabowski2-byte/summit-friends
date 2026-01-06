@@ -109,13 +109,13 @@ const UserProfile = () => {
                     <div className="relative">
                       <Avatar className="w-24 h-24">
                         <AvatarImage src="https://i.pravatar.cc/200?img=68" alt="Anna" />
-                        <AvatarFallback>A</AvatarFallback>
+                        <AvatarFallback>M</AvatarFallback>
                       </Avatar>
                       <Button variant="ghost" size="icon" className="absolute -right-2 -top-2">
                         <Settings className="w-4 h-4" />
                       </Button>
                     </div>
-                    <h1 className="text-2xl font-bold mt-4">Anna</h1>
+                    <h1 className="text-2xl font-bold mt-4">Martin</h1>
                     <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
                       <Mountain className="w-4 h-4 text-primary" />
                       <span className="text-primary font-medium">Trail Rookie</span>
@@ -207,7 +207,7 @@ const UserProfile = () => {
               <Card>
                 <CardContent className="pt-6">
                   <div className="flex items-center justify-between mb-4">
-                    <h2 className="font-semibold">ANNA'S REVIEWS (34)</h2>
+                    <h2 className="font-semibold">MARTIN'S REVIEWS (34)</h2>
                     <Button variant="link" className="text-primary p-0">
                       Show all &gt;
                     </Button>
@@ -240,7 +240,7 @@ const UserProfile = () => {
             <div className="lg:col-span-2">
               <Card>
                 <CardContent className="pt-6">
-                  <h2 className="font-semibold mb-4">ANNA'S ACTIVITIES</h2>
+                  <h2 className="font-semibold mb-4">MARTIN'S ACTIVITIES</h2>
                   <Tabs defaultValue="upcoming" className="w-full">
                     <TabsList>
                       <TabsTrigger value="upcoming">Upcoming | 2</TabsTrigger>
