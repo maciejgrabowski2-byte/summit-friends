@@ -96,7 +96,7 @@ const SidebarEventCard = ({
               <div className="flex -space-x-2">
                 {event.participants.slice(0, 3).map((avatar, index) => <Avatar key={index} className="w-6 h-6 border-2 border-background">
                     <AvatarImage src={avatar} />
-                    <AvatarFallback className="px-[20px] py-[20px]">U</AvatarFallback>
+                    <AvatarFallback className="px-[20px] py-[20px] rounded-lg">U</AvatarFallback>
                   </Avatar>)}
               </div>
               <span className="text-xs text-muted-foreground">
@@ -120,7 +120,7 @@ const SidebarEventCard = ({
     </div>;
 };
 const EventsSidebar = () => {
-  return <div className="space-y-8 border-[#c8d2e4] bg-muted rounded w-full lg:min-w-[360px] lg:max-w-[360px]">
+  return <div className="space-y-8 border-[#c8d2e4] bg-muted rounded">
       {/* Your upcoming events */}
       <div className="px-[20px] py-[20px] bg-muted rounded-none">
         <h3 className="font-semibold text-foreground mb-4">Your upcoming events</h3>
@@ -130,7 +130,7 @@ const EventsSidebar = () => {
       </div>
       
       {/* Your past events */}
-      <div className="px-5 pb-5">
+      <div>
         <h3 className="font-semibold text-foreground mb-4">Your past events</h3>
         <div className="space-y-4">
           {pastEvents.map(event => <SidebarEventCard key={event.id} event={event} showReview />)}
