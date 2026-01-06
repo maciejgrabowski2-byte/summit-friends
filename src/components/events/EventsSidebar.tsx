@@ -122,7 +122,7 @@ const SidebarEventCard = ({
 const EventsSidebar = () => {
   return <div className="space-y-8 border-[#c8d2e4] bg-muted rounded">
       {/* Your upcoming events */}
-      <div className="px-[20px] py-[20px] bg-muted rounded-none">
+      <div className="bg-muted rounded-none">
         <h3 className="font-semibold text-foreground mb-4">Your upcoming events</h3>
         <div className="space-y-4">
           {upcomingEvents.map(event => <SidebarEventCard key={event.id} event={event} />)}
