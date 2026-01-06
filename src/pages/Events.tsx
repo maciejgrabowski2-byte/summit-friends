@@ -10,7 +10,7 @@ const Events = () => {
       <Navbar />
       
       <main className="pt-24 pb-16">
-        <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div className="max-w-[1440px] w-full mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
           <h1 className="text-4xl font-bold text-foreground mb-8">Events</h1>
           
           <div className="flex flex-col lg:flex-row gap-8">
