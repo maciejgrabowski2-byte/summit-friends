@@ -120,7 +120,7 @@ const SidebarEventCard = ({
     </div>;
 };
 const EventsSidebar = () => {
-  return <div className="space-y-8 border-[#c8d2e4] bg-muted rounded min-w-[360px]">
+  return <div className="space-y-8 border-[#c8d2e4] bg-muted rounded w-full lg:min-w-[360px] lg:max-w-[360px]">
       {/* Your upcoming events */}
       <div className="px-[20px] py-[20px] bg-muted rounded-none">
         <h3 className="font-semibold text-foreground mb-4">Your upcoming events</h3>

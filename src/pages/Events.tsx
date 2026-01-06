@@ -10,18 +10,18 @@ const Events = () => {
       <Navbar />
       
       <main className="pt-24 pb-16">
-        <div className="container mx-auto px-4 sm:px-6">
+        <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
           <h1 className="text-4xl font-bold text-foreground mb-8">Events</h1>
           
           <div className="flex flex-col lg:flex-row gap-8">
             {/* Main Content */}
-            <div className="flex-1">
+            <div className="flex-1 min-w-0 overflow-x-auto">
               <EventsFilters />
               <EventsList />
             </div>
             
             {/* Sidebar */}
-            <div className="lg:w-80">
+            <div className="w-full lg:w-auto lg:flex-shrink-0">
               <EventsSidebar />
             </div>
           </div>
