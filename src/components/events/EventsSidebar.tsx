@@ -130,7 +130,7 @@ const EventsSidebar = () => {
       </div>
       
       {/* Your past events */}
-      <div>
+      <div className="px-5 pb-5">
         <h3 className="font-semibold text-foreground mb-4">Your past events</h3>
         <div className="space-y-4">
           {pastEvents.map(event => <SidebarEventCard key={event.id} event={event} showReview />)}
