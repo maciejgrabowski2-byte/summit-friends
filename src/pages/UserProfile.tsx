@@ -137,7 +137,7 @@ const UserProfile = () => {
               </Card>
 
               {/* Stats Card */}
-              <Card>
+              <Card className="border-0 bg-[#F2F3F6]">
                 <CardContent className="pt-6">
                   <Tabs defaultValue="all-time" className="w-full">
                     <TabsList className="w-full">
