@@ -203,41 +203,40 @@ const UserProfile = () => {
                 </CardContent>
               </Card>
 
-              {/* Reviews Section */}
-              <Card>
-                <CardContent className="pt-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <h2 className="font-semibold">MARTIN'S REVIEWS (34)</h2>
-                    <Button variant="link" className="text-primary p-0">
-                      Show all &gt;
-                    </Button>
-                  </div>
-                  <div className="space-y-4">
-                    {reviews.map((review) => (
-                      <Card key={review.id} className="bg-muted/50">
-                        <CardContent className="p-4">
-                          <p className="text-sm mb-3">{review.text}</p>
-                          <div className="flex items-center gap-2">
-                            <Avatar className="w-6 h-6">
-                              <AvatarImage src={review.avatar} alt={review.author} />
-                              <AvatarFallback>{review.author[0]}</AvatarFallback>
-                            </Avatar>
-                            <div className="text-xs">
-                              <span className="font-medium text-primary">{review.author}</span>
-                              <br />
-                              <span className="text-muted-foreground">{review.event}, {review.date}</span>
-                            </div>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
             </div>
 
-            {/* Right Column - Activities */}
-            <div className="lg:col-span-2">
+            {/* Right Column - Reviews & Activities */}
+            <div className="lg:col-span-2 space-y-6">
+              {/* Reviews Section - Horizontal */}
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="font-semibold">MARTIN'S REVIEWS (34)</h2>
+                  <Button variant="link" className="text-primary p-0">
+                    Show all &gt;
+                  </Button>
+                </div>
+                <div className="flex gap-4 overflow-x-auto pb-2">
+                  {reviews.map((review) => (
+                    <Card key={review.id} className="bg-muted/50 flex-shrink-0 w-[300px]">
+                      <CardContent className="p-4">
+                        <p className="text-sm mb-3">{review.text}</p>
+                        <div className="flex items-center gap-2">
+                          <Avatar className="w-6 h-6">
+                            <AvatarImage src={review.avatar} alt={review.author} />
+                            <AvatarFallback>{review.author[0]}</AvatarFallback>
+                          </Avatar>
+                          <div className="text-xs">
+                            <span className="font-medium text-primary">{review.author}</span>
+                            <br />
+                            <span className="text-muted-foreground">{review.event}, {review.date}</span>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+              {/* Activities Section */}
               <Card className="border-0 shadow-none">
                 <CardContent className="p-0">
                   <h2 className="font-semibold mb-4">MARTIN'S ACTIVITIES</h2>
