@@ -96,7 +96,7 @@ const SidebarEventCard = ({
               <div className="flex -space-x-2">
                 {event.participants.slice(0, 3).map((avatar, index) => <Avatar key={index} className="w-6 h-6 border-2 border-background">
                     <AvatarImage src={avatar} />
-                    <AvatarFallback className="px-[20px] py-[20px] rounded-lg">U</AvatarFallback>
+                    <AvatarFallback className="px-[20px] py-[20px] rounded-xl">U</AvatarFallback>
                   </Avatar>)}
               </div>
               <span className="text-xs text-muted-foreground">
