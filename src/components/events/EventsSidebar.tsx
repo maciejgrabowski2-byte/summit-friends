@@ -61,7 +61,7 @@ const SidebarEventCard = ({
   event,
   showReview
 }: SidebarEventCardProps) => {
-  return <div className="p-4 bg-muted/30 rounded-lg">
+  return <div className="p-4 bg-background rounded-lg">
       <div className="flex gap-3">
         <div className="text-center shrink-0">
           <p className="text-sm font-medium text-foreground">{event.date}</p>
