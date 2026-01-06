@@ -1,45 +1,77 @@
 import { Search, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+
+  const navLinks = [
+    { href: "/events", label: "Events" },
+    { href: "#routes", label: "Routes" },
+    { href: "#community", label: "Community" },
+  ];
+
+  const isActive = (href: string) => {
+    if (href.startsWith("#")) return false;
+    return location.pathname === href;
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <a href="/" className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2">
             <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
               <svg viewBox="0 0 24 24" className="w-5 h-5 text-primary-foreground" fill="currentColor">
                 <path d="M14,6L10.25,11L13.1,14.8L11.5,16C9.81,13.75 7,10 7,10L1,18H23L14,6Z" />
               </svg>
             </div>
-            <span className="text-lg font-bold text-foreground">Hiking Buddies</span>
-          </a>
+            <span className="text-lg font-bold text-foreground italic">Hiking Buddies</span>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <a href="#events" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-              Events
-            </a>
-            <a href="#routes" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-              Routes
-            </a>
-            <a href="#community" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-              Community
-            </a>
+            {navLinks.map((link) => (
+              link.href.startsWith("#") ? (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className={`text-sm font-medium transition-colors ${
+                    isActive(link.href)
+                      ? "text-foreground"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              )
+            ))}
           </div>
 
           {/* Actions */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-3">
+            <Button variant="ghost" className="text-sm font-medium text-foreground">
+              Create event
+            </Button>
             <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
               <Search className="w-5 h-5" />
             </Button>
-            <Button variant="primary" size="sm">
-              Add event
-            </Button>
+            <Avatar className="w-8 h-8 cursor-pointer">
+              <AvatarImage src="https://i.pravatar.cc/40?img=68" alt="User" />
+              <AvatarFallback>U</AvatarFallback>
+            </Avatar>
           </div>
 
           {/* Mobile menu button */}
@@ -55,17 +87,33 @@ const Navbar = () => {
         {isOpen && (
           <div className="md:hidden py-4 border-t border-border animate-fade-in">
             <div className="flex flex-col gap-4">
-              <a href="#events" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                Events
-              </a>
-              <a href="#routes" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                Routes
-              </a>
-              <a href="#community" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                Community
-              </a>
-              <Button variant="primary" size="sm" className="w-fit">
-                Add event
+              {navLinks.map((link) => (
+                link.href.startsWith("#") ? (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={link.href}
+                    to={link.href}
+                    className={`text-sm font-medium transition-colors ${
+                      isActive(link.href)
+                        ? "text-foreground"
+                        : "text-muted-foreground hover:text-foreground"
+                    }`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                )
+              ))}
+              <Button variant="ghost" className="text-sm font-medium w-fit">
+                Create event
               </Button>
             </div>
           </div>
