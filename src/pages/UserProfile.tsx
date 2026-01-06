@@ -103,18 +103,16 @@ const UserProfile = () => {
             {/* Left Column - Profile Info */}
             <div className="lg:col-span-1 space-y-6 w-full max-w-[360px] mx-auto lg:mx-0">
               {/* Profile Header */}
-              <Card className="border-0 bg-[#F2F3F6]">
+              <Card className="border-0 bg-[#F2F3F6] relative">
+                <Button variant="ghost" size="icon" className="absolute right-2 top-2">
+                  <Settings className="w-4 h-4" />
+                </Button>
                 <CardContent className="pt-6">
                   <div className="flex flex-col items-center text-center">
-                    <div className="relative">
-                      <Avatar className="w-24 h-24">
-                        <AvatarImage src="https://i.pravatar.cc/200?img=68" alt="Anna" />
-                        <AvatarFallback>M</AvatarFallback>
-                      </Avatar>
-                      <Button variant="ghost" size="icon" className="absolute -right-2 -top-2">
-                        <Settings className="w-4 h-4" />
-                      </Button>
-                    </div>
+                    <Avatar className="w-24 h-24">
+                      <AvatarImage src="https://i.pravatar.cc/200?img=68" alt="Anna" />
+                      <AvatarFallback>M</AvatarFallback>
+                    </Avatar>
                     <h1 className="text-2xl font-bold mt-4">Martin</h1>
                     <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
                       <Mountain className="w-4 h-4 text-primary" />
