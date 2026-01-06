@@ -103,7 +103,7 @@ const UserProfile = () => {
             {/* Left Column - Profile Info */}
             <div className="lg:col-span-1 space-y-6">
               {/* Profile Header */}
-              <Card>
+              <Card className="border-0 bg-[#F2F3F6]">
                 <CardContent className="pt-6">
                   <div className="flex flex-col items-center text-center">
                     <div className="relative">
