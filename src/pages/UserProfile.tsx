@@ -238,8 +238,8 @@ const UserProfile = () => {
 
             {/* Right Column - Activities */}
             <div className="lg:col-span-2">
-              <Card>
-                <CardContent className="pt-6">
+              <Card className="border-0 shadow-none">
+                <CardContent className="p-0">
                   <h2 className="font-semibold mb-4">MARTIN'S ACTIVITIES</h2>
                   <Tabs defaultValue="upcoming" className="w-full">
                     <TabsList>
