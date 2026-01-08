@@ -17,7 +17,7 @@ const Navbar = () => {
 
   const navLinks = [
     { href: "/events", label: "Events" },
-    { href: "#routes", label: "Routes" },
+    { href: "/routes", label: "Routes" },
     { href: "#community", label: "Community" },
   ];
 
