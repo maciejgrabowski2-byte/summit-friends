@@ -5,7 +5,9 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Settings, MessageCircle, Share2, Mountain, Bike, ArrowUpDown, Clock, MapPin } from "lucide-react";
+import { Settings, MessageCircle, Mountain, Bike } from "lucide-react";
+import EventCard from "@/components/events/EventCard";
+import { userActivities } from "@/data/mockEvents";
 
 const UserProfile = () => {
   const userTags = [
@@ -45,51 +47,6 @@ const UserProfile = () => {
       event: "Alpine Trail",
       date: "May 2024",
       avatar: "https://i.pravatar.cc/40?img=2",
-    },
-  ];
-
-  const activities = [
-    {
-      id: 1,
-      organizer: "Vera",
-      participants: 14,
-      status: "Closed",
-      statusColor: "bg-muted text-muted-foreground",
-      title: "Jochberg hike and swim",
-      userStatus: "You are going",
-      userStatusColor: "bg-green-100 text-green-700",
-      time: "6:45",
-      location: "Munich",
-      transport: "Train",
-      type: "Hiking",
-      difficulty: "T3",
-      distance: "18km",
-      elevation: "1982",
-      duration: "4h 30min",
-      actions: ["Share", "Comment"],
-      primaryAction: "Unjoin",
-      primaryActionColor: "text-red-500 border-red-500 hover:bg-red-50",
-    },
-    {
-      id: 2,
-      organizer: "Anna",
-      participants: 14,
-      status: "1 spot available",
-      statusColor: "bg-green-100 text-green-700",
-      title: "Jochberg hike and swim",
-      userStatus: "You're the organiser",
-      userStatusColor: "bg-primary/10 text-primary",
-      time: "6:45",
-      location: "Munich",
-      transport: "Train",
-      type: "Hiking",
-      difficulty: "T3",
-      distance: "18km",
-      elevation: "1982",
-      duration: "4h 30min",
-      actions: ["Share", "Comment"],
-      primaryAction: "Edit",
-      primaryActionColor: "text-primary border-primary hover:bg-primary/10",
     },
   ];
 
@@ -246,70 +203,8 @@ const UserProfile = () => {
                       <TabsTrigger value="organised">Organised | 43</TabsTrigger>
                     </TabsList>
                     <TabsContent value="upcoming" className="mt-4 space-y-4">
-                      {activities.map((activity) => (
-                        <Card key={activity.id} className="border">
-                          <CardContent className="p-4">
-                            {/* Organizer Row */}
-                            <div className="flex items-center gap-2 mb-2">
-                              <Avatar className="w-8 h-8">
-                                <AvatarImage src={`https://i.pravatar.cc/40?img=${activity.id + 10}`} alt={activity.organizer} />
-                                <AvatarFallback>{activity.organizer[0]}</AvatarFallback>
-                              </Avatar>
-                              <span className="font-medium">{activity.organizer}</span>
-                              <span className="text-muted-foreground text-sm">+{activity.participants}</span>
-                              <Badge className={activity.statusColor}>{activity.status}</Badge>
-                            </div>
-
-                            {/* Title */}
-                            <h3 className="font-semibold text-lg mb-2">{activity.title}</h3>
-
-                            {/* User Status */}
-                            <Badge className={`${activity.userStatusColor} mb-3`}>
-                              {activity.userStatus}
-                            </Badge>
-                            <span className="text-sm text-muted-foreground ml-2">
-                              at {activity.time} · from {activity.location} · by {activity.transport}
-                            </span>
-
-                            {/* Activity Details */}
-                            <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mt-3 mb-4">
-                              <div className="flex items-center gap-1">
-                                <Badge variant="outline" className="text-xs">{activity.difficulty}</Badge>
-                                <Mountain className="w-4 h-4" />
-                                <span>{activity.type}</span>
-                              </div>
-                              <div className="flex items-center gap-1">
-                                <ArrowUpDown className="w-4 h-4" />
-                                <span>{activity.distance}</span>
-                              </div>
-                              <div className="flex items-center gap-1">
-                                <MapPin className="w-4 h-4" />
-                                <span>{activity.elevation} elevation</span>
-                              </div>
-                              <div className="flex items-center gap-1">
-                                <Clock className="w-4 h-4" />
-                                <span>{activity.duration}</span>
-                              </div>
-                            </div>
-
-                            {/* Actions */}
-                            <div className="flex items-center justify-between">
-                              <div className="flex gap-2">
-                                <Button variant="outline" size="sm">
-                                  <Share2 className="w-4 h-4 mr-1" />
-                                  Share
-                                </Button>
-                                <Button variant="outline" size="sm">
-                                  <MessageCircle className="w-4 h-4 mr-1" />
-                                  Comment
-                                </Button>
-                              </div>
-                              <Button variant="outline" size="sm" className={activity.primaryActionColor}>
-                                {activity.primaryAction}
-                              </Button>
-                            </div>
-                          </CardContent>
-                        </Card>
+                      {userActivities.map((activity) => (
+                        <EventCard key={activity.id} event={activity} variant="profile" />
                       ))}
                     </TabsContent>
                     <TabsContent value="recent">

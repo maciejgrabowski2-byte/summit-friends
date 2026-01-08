@@ -1,46 +1,36 @@
-import { Bike, Footprints, ArrowUpRight } from "lucide-react";
+import { Bike, Footprints } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
+import { Event } from "@/types/event";
 
-interface EventRowProps {
-  event: {
-    id: number;
-    time: string;
-    duration: string;
-    title: string;
-    organizer: string;
-    organizerAvatar: string;
-    image: string;
-    departureLocation: string;
-    transport: string | null;
-    activity: string;
-    activityBadge: string;
-    distance: string;
-    elevation: string;
-    totalHeight: string;
-    heightType: string;
-    participantsComing: number;
-    spotsAvailable?: number;
-    waitlist?: number;
-    participants: string[];
-  };
+interface EventCardRowProps {
+  event: Event;
+  onClick?: () => void;
+  className?: string;
 }
 
-const EventRow = ({ event }: EventRowProps) => {
+const EventCardRow = ({ event, onClick, className }: EventCardRowProps) => {
   const ActivityIcon = event.activity === "Cycling" ? Bike : Footprints;
-  
+
   return (
-    <div className="flex flex-col sm:flex-row gap-4 p-4 rounded-lg hover:bg-muted/50 transition-colors cursor-pointer border border-transparent hover:border-border">
+    <div
+      className={cn(
+        "flex flex-col sm:flex-row gap-4 p-4 rounded-lg hover:bg-muted/50 transition-colors cursor-pointer border border-transparent hover:border-border",
+        className
+      )}
+      onClick={onClick}
+    >
       {/* Time & Duration */}
       <div className="flex sm:flex-col items-center sm:items-start gap-2 sm:gap-0 sm:w-16 shrink-0">
         <span className="text-lg font-semibold text-foreground">{event.time}</span>
         <span className="text-sm text-muted-foreground">{event.duration}</span>
       </div>
-      
+
       {/* Image & Info */}
       <div className="flex gap-3 flex-1 min-w-0">
         <img
-          src={event.image}
+          src={event.image || "/placeholder.svg"}
           alt={event.title}
           className="w-12 h-12 sm:w-14 sm:h-14 rounded-lg object-cover shrink-0"
         />
@@ -55,7 +45,7 @@ const EventRow = ({ event }: EventRowProps) => {
           </div>
         </div>
       </div>
-      
+
       {/* Departure */}
       <div className="sm:w-32 shrink-0">
         <p className="text-sm font-medium text-foreground">{event.departureLocation}</p>
@@ -63,7 +53,7 @@ const EventRow = ({ event }: EventRowProps) => {
           {event.transport ? `by ${event.transport}` : "No transport"}
         </p>
       </div>
-      
+
       {/* Activity */}
       <div className="sm:w-48 shrink-0">
         <div className="flex items-center gap-2 flex-wrap">
@@ -79,11 +69,11 @@ const EventRow = ({ event }: EventRowProps) => {
           {event.distance} • {event.elevation} elevation • {event.totalHeight} {event.heightType}
         </p>
       </div>
-      
+
       {/* Participants */}
       <div className="sm:w-40 shrink-0 sm:text-right">
         <p className="text-sm text-foreground mb-2">
-          {event.participantsComing} coming / {" "}
+          {event.participantsComing} coming /{" "}
           {event.spotsAvailable ? (
             <span className="text-primary">{event.spotsAvailable} available</span>
           ) : (
@@ -91,7 +81,7 @@ const EventRow = ({ event }: EventRowProps) => {
           )}
         </p>
         <div className="flex sm:justify-end -space-x-2">
-          {event.participants.slice(0, 4).map((avatar, index) => (
+          {event.participants?.slice(0, 4).map((avatar, index) => (
             <Avatar key={index} className="w-7 h-7 border-2 border-background">
               <AvatarImage src={avatar} />
               <AvatarFallback>U</AvatarFallback>
@@ -103,4 +93,4 @@ const EventRow = ({ event }: EventRowProps) => {
   );
 };
 
-export default EventRow;
+export default EventCardRow;
