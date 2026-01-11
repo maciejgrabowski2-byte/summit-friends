@@ -126,42 +126,38 @@ const Routes = () => {
             </div>
           )}
 
-          <div className="flex flex-col lg:flex-row gap-8">
-            {/* Sidebar Filters */}
-            <aside className="w-full lg:w-80 lg:flex-shrink-0">
-              <div className="lg:sticky lg:top-24">
-                <RoutesFilters
-                  filters={filters}
-                  onFiltersChange={setFilters}
-                  onReset={handleResetFilters}
-                />
-              </div>
-            </aside>
+          {/* Filter Bar */}
+          <div className="mb-6">
+            <RoutesFilters
+              filters={filters}
+              onFiltersChange={setFilters}
+              onReset={handleResetFilters}
+            />
+          </div>
 
-            {/* Main Content */}
-            <div className="flex-1 min-w-0">
-              {/* Results Header */}
-              <div className="flex items-center justify-between mb-6">
-                <div className="flex items-center gap-2">
-                  <span className="text-sm text-muted-foreground">
-                    Showing
-                  </span>
-                  <Badge variant="secondary" className="font-semibold">
-                    {filteredRoutes.length}
-                  </Badge>
-                  <span className="text-sm text-muted-foreground">
-                    routes
-                  </span>
-                </div>
-              </div>
+          <div className="flex flex-col gap-8">
 
-              {/* Routes Grid */}
-              <RoutesList
-                routes={filteredRoutes}
-                selectedRoute={selectedRoute}
-                onSelectRoute={handleSelectRoute}
-              />
+            {/* Results Header */}
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-muted-foreground">
+                  Showing
+                </span>
+                <Badge variant="secondary" className="font-semibold">
+                  {filteredRoutes.length}
+                </Badge>
+                <span className="text-sm text-muted-foreground">
+                  routes
+                </span>
+              </div>
             </div>
+
+            {/* Routes Grid */}
+            <RoutesList
+              routes={filteredRoutes}
+              selectedRoute={selectedRoute}
+              onSelectRoute={handleSelectRoute}
+            />
           </div>
         </div>
       </main>
