@@ -131,49 +131,41 @@ const Routes = () => {
             </div>
           )}
 
-          {/* Results Header with Filter Toggle */}
-          <div className="flex items-center gap-4 mb-6">
-            {!isFiltersOpen && (
-              <RoutesFilters
-                filters={filters}
-                onFiltersChange={setFilters}
-                onReset={handleResetFilters}
-                isOpen={isFiltersOpen}
-                onToggle={handleToggleFilters}
-              />
-            )}
-            <div className="flex items-center gap-2">
-              <span className="text-sm text-muted-foreground">
-                Showing
-              </span>
-              <Badge variant="secondary" className="font-semibold">
-                {filteredRoutes.length}
-              </Badge>
-              <span className="text-sm text-muted-foreground">
-                routes
-              </span>
-            </div>
-          </div>
-
           {/* Content with inline filter sidebar */}
           <div className="flex gap-6">
             {/* Filter Sidebar */}
-            {isFiltersOpen && (
-              <RoutesFilters
-                filters={filters}
-                onFiltersChange={setFilters}
-                onReset={handleResetFilters}
-                isOpen={isFiltersOpen}
-                onToggle={handleToggleFilters}
-              />
-            )}
-
-            {/* Routes Grid */}
-            <RoutesList
-              routes={filteredRoutes}
-              selectedRoute={selectedRoute}
-              onSelectRoute={handleSelectRoute}
+            <RoutesFilters
+              filters={filters}
+              onFiltersChange={setFilters}
+              onReset={handleResetFilters}
+              isOpen={isFiltersOpen}
+              onToggle={handleToggleFilters}
             />
+
+            {/* Main Content */}
+            <div className="flex-1 min-w-0">
+              {/* Results Header */}
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-2">
+                  <span className="text-sm text-muted-foreground">
+                    Showing
+                  </span>
+                  <Badge variant="secondary" className="font-semibold">
+                    {filteredRoutes.length}
+                  </Badge>
+                  <span className="text-sm text-muted-foreground">
+                    routes
+                  </span>
+                </div>
+              </div>
+
+              {/* Routes Grid */}
+              <RoutesList
+                routes={filteredRoutes}
+                selectedRoute={selectedRoute}
+                onSelectRoute={handleSelectRoute}
+              />
+            </div>
           </div>
         </div>
       </main>
