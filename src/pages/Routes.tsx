@@ -24,6 +24,7 @@ const initialFilters: FiltersState = {
 const Routes = () => {
   const [filters, setFilters] = useState<FiltersState>(initialFilters);
   const [selectedRoute, setSelectedRoute] = useState<Route | null>(null);
+  const [isFiltersOpen, setIsFiltersOpen] = useState(false);
 
   const filteredRoutes = useMemo(() => {
     return mockRoutes.filter((route) => {
@@ -92,6 +93,10 @@ const Routes = () => {
     setFilters(initialFilters);
   };
 
+  const handleToggleFilters = () => {
+    setIsFiltersOpen(!isFiltersOpen);
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -126,38 +131,41 @@ const Routes = () => {
             </div>
           )}
 
-          {/* Filter Bar */}
-          <div className="mb-6">
+          {/* Content with inline filter sidebar */}
+          <div className="flex gap-6">
+            {/* Filter Sidebar */}
             <RoutesFilters
               filters={filters}
               onFiltersChange={setFilters}
               onReset={handleResetFilters}
+              isOpen={isFiltersOpen}
+              onToggle={handleToggleFilters}
             />
-          </div>
 
-          <div className="flex flex-col gap-8">
-
-            {/* Results Header */}
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-muted-foreground">
-                  Showing
-                </span>
-                <Badge variant="secondary" className="font-semibold">
-                  {filteredRoutes.length}
-                </Badge>
-                <span className="text-sm text-muted-foreground">
-                  routes
-                </span>
+            {/* Main Content */}
+            <div className="flex-1 min-w-0">
+              {/* Results Header */}
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-2">
+                  <span className="text-sm text-muted-foreground">
+                    Showing
+                  </span>
+                  <Badge variant="secondary" className="font-semibold">
+                    {filteredRoutes.length}
+                  </Badge>
+                  <span className="text-sm text-muted-foreground">
+                    routes
+                  </span>
+                </div>
               </div>
-            </div>
 
-            {/* Routes Grid */}
-            <RoutesList
-              routes={filteredRoutes}
-              selectedRoute={selectedRoute}
-              onSelectRoute={handleSelectRoute}
-            />
+              {/* Routes Grid */}
+              <RoutesList
+                routes={filteredRoutes}
+                selectedRoute={selectedRoute}
+                onSelectRoute={handleSelectRoute}
+              />
+            </div>
           </div>
         </div>
       </main>
