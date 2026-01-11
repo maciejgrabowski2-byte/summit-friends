@@ -149,29 +149,31 @@ const RoutesFilters = ({ filters, onFiltersChange, onReset, isOpen, onToggle }: 
 
   return (
     <div className="flex">
-      {/* Toggle Button - Always visible */}
-      <Button
-        variant="outline"
-        size="icon"
-        onClick={onToggle}
-        className="h-9 w-9 relative shrink-0"
-      >
-        <ListFilter className="h-4 w-4" />
-        {activeFilterCount > 0 && (
-          <Badge 
-            variant="secondary" 
-            className="absolute -top-1.5 -right-1.5 h-5 min-w-5 px-1.5 text-xs"
-          >
-            {activeFilterCount}
-          </Badge>
-        )}
-      </Button>
+      {/* Toggle Button - Only visible when sidebar is closed */}
+      {!isOpen && (
+        <Button
+          variant="outline"
+          size="icon"
+          onClick={onToggle}
+          className="h-9 w-9 relative shrink-0"
+        >
+          <ListFilter className="h-4 w-4" />
+          {activeFilterCount > 0 && (
+            <Badge 
+              variant="secondary" 
+              className="absolute -top-1.5 -right-1.5 h-5 min-w-5 px-1.5 text-xs"
+            >
+              {activeFilterCount}
+            </Badge>
+          )}
+        </Button>
+      )}
 
       {/* Collapsible Sidebar */}
       <div
         className={cn(
           "overflow-hidden transition-all duration-300 ease-in-out",
-          isOpen ? "w-72 ml-4 opacity-100" : "w-0 ml-0 opacity-0"
+          isOpen ? "w-72 opacity-100" : "w-0 opacity-0"
         )}
       >
         <div className="w-72 h-full border border-border rounded-xl bg-background flex flex-col">
