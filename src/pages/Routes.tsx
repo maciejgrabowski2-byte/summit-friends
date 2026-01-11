@@ -164,6 +164,7 @@ const Routes = () => {
                 routes={filteredRoutes}
                 selectedRoute={selectedRoute}
                 onSelectRoute={handleSelectRoute}
+                isFiltersOpen={isFiltersOpen}
               />
             </div>
           </div>

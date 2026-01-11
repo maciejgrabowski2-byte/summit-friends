@@ -6,9 +6,10 @@ interface RoutesListProps {
   routes: Route[];
   selectedRoute: Route | null;
   onSelectRoute: (route: Route) => void;
+  isFiltersOpen?: boolean;
 }
 
-const RoutesList = ({ routes, selectedRoute, onSelectRoute }: RoutesListProps) => {
+const RoutesList = ({ routes, selectedRoute, onSelectRoute, isFiltersOpen = false }: RoutesListProps) => {
   if (routes.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-16 text-center">
@@ -26,7 +27,7 @@ const RoutesList = ({ routes, selectedRoute, onSelectRoute }: RoutesListProps) =
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+    <div className={`grid grid-cols-1 gap-6 ${isFiltersOpen ? 'md:grid-cols-2' : 'md:grid-cols-2 xl:grid-cols-3'}`}>
       {routes.map((route) => (
         <RouteCard
           key={route.id}
