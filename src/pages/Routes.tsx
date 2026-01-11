@@ -132,7 +132,7 @@ const Routes = () => {
           )}
 
           {/* Content with inline filter sidebar */}
-          <div className="flex gap-6">
+          <div className="flex">
             {/* Filter Sidebar */}
             <RoutesFilters
               filters={filters}
