@@ -18,10 +18,24 @@ import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Separator } from "@/components/ui/separator";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+  SheetFooter,
+} from "@/components/ui/sheet";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 import { 
   ListFilter, 
-  ChevronDown, 
+  ChevronDown,
   Mountain, 
   Gauge, 
   Ruler, 
@@ -51,63 +65,42 @@ interface RoutesFiltersProps {
   onReset: () => void;
 }
 
-interface FilterPopoverProps {
+interface FilterSectionProps {
   label: string;
   icon: React.ReactNode;
   activeCount: number;
   children: React.ReactNode;
-  onClear: () => void;
-  onApply: () => void;
+  defaultOpen?: boolean;
 }
 
-const FilterPopover = ({ label, icon, activeCount, children, onClear, onApply }: FilterPopoverProps) => {
-  const [open, setOpen] = useState(false);
-
-  const handleApply = () => {
-    onApply();
-    setOpen(false);
-  };
+const FilterSection = ({ label, icon, activeCount, children, defaultOpen = false }: FilterSectionProps) => {
+  const [open, setOpen] = useState(defaultOpen);
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
-        <Button
-          variant="outline"
-          size="sm"
-          className="h-9 gap-2 border-border bg-background hover:bg-accent hover:text-accent-foreground"
-        >
+    <Collapsible open={open} onOpenChange={setOpen}>
+      <CollapsibleTrigger className="flex w-full items-center justify-between py-3 text-sm font-medium hover:text-foreground transition-colors">
+        <div className="flex items-center gap-2">
           {icon}
           <span>{label}</span>
           {activeCount > 0 && (
-            <Badge variant="secondary" className="ml-1 h-5 min-w-5 px-1.5 text-xs">
+            <Badge variant="secondary" className="h-5 min-w-5 px-1.5 text-xs">
               {activeCount}
             </Badge>
           )}
-          <ChevronDown className="h-4 w-4 opacity-50" />
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent className="w-72 p-0" align="start" showArrow>
-        <div className="p-4 space-y-4">
-          <h4 className="font-medium text-sm">{label}</h4>
-          <div className="space-y-3">
-            {children}
-          </div>
         </div>
-        <div className="flex items-center justify-between gap-2 border-t border-border p-3 bg-muted/50">
-          <Button variant="ghost" size="sm" onClick={onClear} className="h-8">
-            Clear
-          </Button>
-          <Button size="sm" onClick={handleApply} className="h-8">
-            Apply
-          </Button>
+        <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
+      </CollapsibleTrigger>
+      <CollapsibleContent className="pb-4">
+        <div className="pt-2">
+          {children}
         </div>
-      </PopoverContent>
-    </Popover>
+      </CollapsibleContent>
+    </Collapsible>
   );
 };
 
 const RoutesFilters = ({ filters, onFiltersChange, onReset }: RoutesFiltersProps) => {
-  // Local state for pending changes
+  const [open, setOpen] = useState(false);
   const [pendingFilters, setPendingFilters] = useState<FiltersState>(filters);
 
   const handleDifficultyChange = (difficulty: Difficulty, checked: boolean) => {
@@ -163,269 +156,270 @@ const RoutesFilters = ({ filters, onFiltersChange, onReset }: RoutesFiltersProps
     (filters.duration[0] > 0 || filters.duration[1] < 12 ? 1 : 0) +
     (filters.elevationGain[0] > 0 || filters.elevationGain[1] < 2500 ? 1 : 0);
 
-  // Sync pending filters when main filters change
-  const syncPendingFilters = () => {
-    setPendingFilters(filters);
+  const handleApply = () => {
+    onFiltersChange(pendingFilters);
+    setOpen(false);
+  };
+
+  const handleClear = () => {
+    const resetFilters: FiltersState = {
+      difficulty: [],
+      technicalLevel: [],
+      distance: [0, 50],
+      duration: [0, 12],
+      elevationGain: [0, 2500],
+      routeType: [],
+      highlights: [],
+      features: [],
+      facilities: [],
+    };
+    setPendingFilters(resetFilters);
+    onReset();
+  };
+
+  // Sync pending filters when sheet opens
+  const handleOpenChange = (isOpen: boolean) => {
+    if (isOpen) {
+      setPendingFilters(filters);
+    }
+    setOpen(isOpen);
   };
 
   return (
-    <div className="flex flex-wrap items-center gap-2">
-      {/* Main Filter Button with count */}
-      <div className="flex items-center gap-2 mr-2">
-        <ListFilter className="h-4 w-4 text-muted-foreground" />
-        <span className="text-sm font-medium text-foreground">Filters</span>
-        {activeFilterCount > 0 && (
-          <Badge variant="secondary" className="h-5 min-w-5 px-1.5 text-xs">
-            {activeFilterCount}
-          </Badge>
-        )}
-      </div>
-
-      {/* Difficulty Filter */}
-      <FilterPopover
-        label="Difficulty"
-        icon={<Mountain className="h-4 w-4" />}
-        activeCount={filters.difficulty.length}
-        onClear={() => {
-          setPendingFilters({ ...pendingFilters, difficulty: [] });
-          onFiltersChange({ ...filters, difficulty: [] });
-        }}
-        onApply={() => onFiltersChange({ ...filters, difficulty: pendingFilters.difficulty })}
-      >
-        <div className="grid grid-cols-2 gap-2">
-          {difficultyOptions.map((difficulty) => (
-            <label key={difficulty} className="flex items-center gap-2 cursor-pointer">
-              <Checkbox
-                checked={pendingFilters.difficulty.includes(difficulty)}
-                onCheckedChange={(checked) => handleDifficultyChange(difficulty, !!checked)}
-              />
-              <span className="text-sm">{difficulty}</span>
-            </label>
-          ))}
-        </div>
-      </FilterPopover>
-
-      {/* Technical Level Filter */}
-      <FilterPopover
-        label="Technical"
-        icon={<Gauge className="h-4 w-4" />}
-        activeCount={filters.technicalLevel.length}
-        onClear={() => {
-          setPendingFilters({ ...pendingFilters, technicalLevel: [] });
-          onFiltersChange({ ...filters, technicalLevel: [] });
-        }}
-        onApply={() => onFiltersChange({ ...filters, technicalLevel: pendingFilters.technicalLevel })}
-      >
-        <div className="grid grid-cols-3 gap-2">
-          {technicalLevelOptions.map((level) => (
-            <label key={level} className="flex items-center gap-2 cursor-pointer">
-              <Checkbox
-                checked={pendingFilters.technicalLevel.includes(level)}
-                onCheckedChange={(checked) => handleTechnicalChange(level, !!checked)}
-              />
-              <span className="text-sm">{level}</span>
-            </label>
-          ))}
-        </div>
-      </FilterPopover>
-
-      {/* Distance Filter */}
-      <FilterPopover
-        label="Distance"
-        icon={<Ruler className="h-4 w-4" />}
-        activeCount={filters.distance[0] > 0 || filters.distance[1] < 50 ? 1 : 0}
-        onClear={() => {
-          setPendingFilters({ ...pendingFilters, distance: [0, 50] });
-          onFiltersChange({ ...filters, distance: [0, 50] });
-        }}
-        onApply={() => onFiltersChange({ ...filters, distance: pendingFilters.distance })}
-      >
-        <div className="space-y-4">
-          <div className="flex justify-between text-sm text-muted-foreground">
-            <span>{pendingFilters.distance[0]} km</span>
-            <span>{pendingFilters.distance[1]} km</span>
-          </div>
-          <Slider
-            value={pendingFilters.distance}
-            onValueChange={(value) =>
-              setPendingFilters({ ...pendingFilters, distance: value as [number, number] })
-            }
-            min={0}
-            max={50}
-            step={1}
-            className="w-full"
-          />
-        </div>
-      </FilterPopover>
-
-      {/* Duration Filter */}
-      <FilterPopover
-        label="Duration"
-        icon={<Clock className="h-4 w-4" />}
-        activeCount={filters.duration[0] > 0 || filters.duration[1] < 12 ? 1 : 0}
-        onClear={() => {
-          setPendingFilters({ ...pendingFilters, duration: [0, 12] });
-          onFiltersChange({ ...filters, duration: [0, 12] });
-        }}
-        onApply={() => onFiltersChange({ ...filters, duration: pendingFilters.duration })}
-      >
-        <div className="space-y-4">
-          <div className="flex justify-between text-sm text-muted-foreground">
-            <span>{pendingFilters.duration[0]}h</span>
-            <span>{pendingFilters.duration[1]}h</span>
-          </div>
-          <Slider
-            value={pendingFilters.duration}
-            onValueChange={(value) =>
-              setPendingFilters({ ...pendingFilters, duration: value as [number, number] })
-            }
-            min={0}
-            max={12}
-            step={0.5}
-            className="w-full"
-          />
-        </div>
-      </FilterPopover>
-
-      {/* Elevation Filter */}
-      <FilterPopover
-        label="Elevation"
-        icon={<TrendingUp className="h-4 w-4" />}
-        activeCount={filters.elevationGain[0] > 0 || filters.elevationGain[1] < 2500 ? 1 : 0}
-        onClear={() => {
-          setPendingFilters({ ...pendingFilters, elevationGain: [0, 2500] });
-          onFiltersChange({ ...filters, elevationGain: [0, 2500] });
-        }}
-        onApply={() => onFiltersChange({ ...filters, elevationGain: pendingFilters.elevationGain })}
-      >
-        <div className="space-y-4">
-          <div className="flex justify-between text-sm text-muted-foreground">
-            <span>{pendingFilters.elevationGain[0]}m</span>
-            <span>{pendingFilters.elevationGain[1]}m</span>
-          </div>
-          <Slider
-            value={pendingFilters.elevationGain}
-            onValueChange={(value) =>
-              setPendingFilters({ ...pendingFilters, elevationGain: value as [number, number] })
-            }
-            min={0}
-            max={2500}
-            step={50}
-            className="w-full"
-          />
-        </div>
-      </FilterPopover>
-
-      {/* Route Type Filter */}
-      <FilterPopover
-        label="Type"
-        icon={<Route className="h-4 w-4" />}
-        activeCount={filters.routeType.length}
-        onClear={() => {
-          setPendingFilters({ ...pendingFilters, routeType: [] });
-          onFiltersChange({ ...filters, routeType: [] });
-        }}
-        onApply={() => onFiltersChange({ ...filters, routeType: pendingFilters.routeType })}
-      >
-        <div className="flex flex-col gap-2">
-          {routeTypeOptions.map((type) => (
-            <label key={type} className="flex items-center gap-2 cursor-pointer">
-              <Checkbox
-                checked={pendingFilters.routeType.includes(type)}
-                onCheckedChange={(checked) => handleRouteTypeChange(type, !!checked)}
-              />
-              <span className="text-sm">{type}</span>
-            </label>
-          ))}
-        </div>
-      </FilterPopover>
-
-      {/* Highlights Filter */}
-      <FilterPopover
-        label="Highlights"
-        icon={<Star className="h-4 w-4" />}
-        activeCount={filters.highlights.length}
-        onClear={() => {
-          setPendingFilters({ ...pendingFilters, highlights: [] });
-          onFiltersChange({ ...filters, highlights: [] });
-        }}
-        onApply={() => onFiltersChange({ ...filters, highlights: pendingFilters.highlights })}
-      >
-        <div className="flex flex-col gap-2">
-          {highlightOptions.map((highlight) => (
-            <label key={highlight.value} className="flex items-center gap-2 cursor-pointer">
-              <Checkbox
-                checked={pendingFilters.highlights.includes(highlight.value)}
-                onCheckedChange={(checked) => handleHighlightChange(highlight.value, !!checked)}
-              />
-              <span className="text-sm">
-                {highlight.icon} {highlight.label}
-              </span>
-            </label>
-          ))}
-        </div>
-      </FilterPopover>
-
-      {/* Features Filter */}
-      <FilterPopover
-        label="Features"
-        icon={<Compass className="h-4 w-4" />}
-        activeCount={filters.features.length}
-        onClear={() => {
-          setPendingFilters({ ...pendingFilters, features: [] });
-          onFiltersChange({ ...filters, features: [] });
-        }}
-        onApply={() => onFiltersChange({ ...filters, features: pendingFilters.features })}
-      >
-        <div className="grid grid-cols-2 gap-2">
-          {featureOptions.map((feature) => (
-            <label key={feature.value} className="flex items-center gap-2 cursor-pointer">
-              <Checkbox
-                checked={pendingFilters.features.includes(feature.value)}
-                onCheckedChange={(checked) => handleFeatureChange(feature.value, !!checked)}
-              />
-              <span className="text-sm">{feature.label}</span>
-            </label>
-          ))}
-        </div>
-      </FilterPopover>
-
-      {/* Facilities Filter */}
-      <FilterPopover
-        label="Facilities"
-        icon={<Building2 className="h-4 w-4" />}
-        activeCount={filters.facilities.length}
-        onClear={() => {
-          setPendingFilters({ ...pendingFilters, facilities: [] });
-          onFiltersChange({ ...filters, facilities: [] });
-        }}
-        onApply={() => onFiltersChange({ ...filters, facilities: pendingFilters.facilities })}
-      >
-        <div className="grid grid-cols-2 gap-2">
-          {facilityOptions.map((facility) => (
-            <label key={facility.value} className="flex items-center gap-2 cursor-pointer">
-              <Checkbox
-                checked={pendingFilters.facilities.includes(facility.value)}
-                onCheckedChange={(checked) => handleFacilityChange(facility.value, !!checked)}
-              />
-              <span className="text-sm">{facility.label}</span>
-            </label>
-          ))}
-        </div>
-      </FilterPopover>
-
-      {/* Reset All Button */}
-      {activeFilterCount > 0 && (
+    <Sheet open={open} onOpenChange={handleOpenChange}>
+      <SheetTrigger asChild>
         <Button
-          variant="ghost"
-          size="sm"
-          onClick={onReset}
-          className="h-9 text-muted-foreground hover:text-foreground"
+          variant="outline"
+          size="icon"
+          className="h-9 w-9 relative"
         >
-          Clear all
+          <ListFilter className="h-4 w-4" />
+          {activeFilterCount > 0 && (
+            <Badge 
+              variant="secondary" 
+              className="absolute -top-1.5 -right-1.5 h-5 min-w-5 px-1.5 text-xs"
+            >
+              {activeFilterCount}
+            </Badge>
+          )}
         </Button>
-      )}
-    </div>
+      </SheetTrigger>
+      <SheetContent side="left" className="w-80 p-0 flex flex-col">
+        <SheetHeader className="px-6 py-4 border-b border-border">
+          <SheetTitle className="flex items-center gap-2">
+            <ListFilter className="h-5 w-5" />
+            Filters
+            {activeFilterCount > 0 && (
+              <Badge variant="secondary" className="h-5 min-w-5 px-1.5 text-xs">
+                {activeFilterCount}
+              </Badge>
+            )}
+          </SheetTitle>
+        </SheetHeader>
+
+        <ScrollArea className="flex-1 px-6">
+          <div className="divide-y divide-border">
+            {/* Difficulty Filter */}
+            <FilterSection
+              label="Difficulty"
+              icon={<Mountain className="h-4 w-4" />}
+              activeCount={pendingFilters.difficulty.length}
+              defaultOpen
+            >
+              <div className="grid grid-cols-2 gap-3">
+                {difficultyOptions.map((difficulty) => (
+                  <label key={difficulty} className="flex items-center gap-2 cursor-pointer">
+                    <Checkbox
+                      checked={pendingFilters.difficulty.includes(difficulty)}
+                      onCheckedChange={(checked) => handleDifficultyChange(difficulty, !!checked)}
+                    />
+                    <span className="text-sm">{difficulty}</span>
+                  </label>
+                ))}
+              </div>
+            </FilterSection>
+
+            {/* Technical Level Filter */}
+            <FilterSection
+              label="Technical Level"
+              icon={<Gauge className="h-4 w-4" />}
+              activeCount={pendingFilters.technicalLevel.length}
+            >
+              <div className="grid grid-cols-3 gap-3">
+                {technicalLevelOptions.map((level) => (
+                  <label key={level} className="flex items-center gap-2 cursor-pointer">
+                    <Checkbox
+                      checked={pendingFilters.technicalLevel.includes(level)}
+                      onCheckedChange={(checked) => handleTechnicalChange(level, !!checked)}
+                    />
+                    <span className="text-sm">{level}</span>
+                  </label>
+                ))}
+              </div>
+            </FilterSection>
+
+            {/* Distance Filter */}
+            <FilterSection
+              label="Distance"
+              icon={<Ruler className="h-4 w-4" />}
+              activeCount={pendingFilters.distance[0] > 0 || pendingFilters.distance[1] < 50 ? 1 : 0}
+            >
+              <div className="space-y-4">
+                <div className="flex justify-between text-sm text-muted-foreground">
+                  <span>{pendingFilters.distance[0]} km</span>
+                  <span>{pendingFilters.distance[1]} km</span>
+                </div>
+                <Slider
+                  value={pendingFilters.distance}
+                  onValueChange={(value) =>
+                    setPendingFilters({ ...pendingFilters, distance: value as [number, number] })
+                  }
+                  min={0}
+                  max={50}
+                  step={1}
+                  className="w-full"
+                />
+              </div>
+            </FilterSection>
+
+            {/* Duration Filter */}
+            <FilterSection
+              label="Duration"
+              icon={<Clock className="h-4 w-4" />}
+              activeCount={pendingFilters.duration[0] > 0 || pendingFilters.duration[1] < 12 ? 1 : 0}
+            >
+              <div className="space-y-4">
+                <div className="flex justify-between text-sm text-muted-foreground">
+                  <span>{pendingFilters.duration[0]}h</span>
+                  <span>{pendingFilters.duration[1]}h</span>
+                </div>
+                <Slider
+                  value={pendingFilters.duration}
+                  onValueChange={(value) =>
+                    setPendingFilters({ ...pendingFilters, duration: value as [number, number] })
+                  }
+                  min={0}
+                  max={12}
+                  step={0.5}
+                  className="w-full"
+                />
+              </div>
+            </FilterSection>
+
+            {/* Elevation Filter */}
+            <FilterSection
+              label="Elevation Gain"
+              icon={<TrendingUp className="h-4 w-4" />}
+              activeCount={pendingFilters.elevationGain[0] > 0 || pendingFilters.elevationGain[1] < 2500 ? 1 : 0}
+            >
+              <div className="space-y-4">
+                <div className="flex justify-between text-sm text-muted-foreground">
+                  <span>{pendingFilters.elevationGain[0]}m</span>
+                  <span>{pendingFilters.elevationGain[1]}m</span>
+                </div>
+                <Slider
+                  value={pendingFilters.elevationGain}
+                  onValueChange={(value) =>
+                    setPendingFilters({ ...pendingFilters, elevationGain: value as [number, number] })
+                  }
+                  min={0}
+                  max={2500}
+                  step={50}
+                  className="w-full"
+                />
+              </div>
+            </FilterSection>
+
+            {/* Route Type Filter */}
+            <FilterSection
+              label="Route Type"
+              icon={<Route className="h-4 w-4" />}
+              activeCount={pendingFilters.routeType.length}
+            >
+              <div className="flex flex-col gap-3">
+                {routeTypeOptions.map((type) => (
+                  <label key={type} className="flex items-center gap-2 cursor-pointer">
+                    <Checkbox
+                      checked={pendingFilters.routeType.includes(type)}
+                      onCheckedChange={(checked) => handleRouteTypeChange(type, !!checked)}
+                    />
+                    <span className="text-sm">{type}</span>
+                  </label>
+                ))}
+              </div>
+            </FilterSection>
+
+            {/* Highlights Filter */}
+            <FilterSection
+              label="Highlights"
+              icon={<Star className="h-4 w-4" />}
+              activeCount={pendingFilters.highlights.length}
+            >
+              <div className="flex flex-col gap-3">
+                {highlightOptions.map((highlight) => (
+                  <label key={highlight.value} className="flex items-center gap-2 cursor-pointer">
+                    <Checkbox
+                      checked={pendingFilters.highlights.includes(highlight.value)}
+                      onCheckedChange={(checked) => handleHighlightChange(highlight.value, !!checked)}
+                    />
+                    <span className="text-sm">
+                      {highlight.icon} {highlight.label}
+                    </span>
+                  </label>
+                ))}
+              </div>
+            </FilterSection>
+
+            {/* Features Filter */}
+            <FilterSection
+              label="Features"
+              icon={<Compass className="h-4 w-4" />}
+              activeCount={pendingFilters.features.length}
+            >
+              <div className="grid grid-cols-2 gap-3">
+                {featureOptions.map((feature) => (
+                  <label key={feature.value} className="flex items-center gap-2 cursor-pointer">
+                    <Checkbox
+                      checked={pendingFilters.features.includes(feature.value)}
+                      onCheckedChange={(checked) => handleFeatureChange(feature.value, !!checked)}
+                    />
+                    <span className="text-sm">{feature.label}</span>
+                  </label>
+                ))}
+              </div>
+            </FilterSection>
+
+            {/* Facilities Filter */}
+            <FilterSection
+              label="Facilities"
+              icon={<Building2 className="h-4 w-4" />}
+              activeCount={pendingFilters.facilities.length}
+            >
+              <div className="grid grid-cols-2 gap-3">
+                {facilityOptions.map((facility) => (
+                  <label key={facility.value} className="flex items-center gap-2 cursor-pointer">
+                    <Checkbox
+                      checked={pendingFilters.facilities.includes(facility.value)}
+                      onCheckedChange={(checked) => handleFacilityChange(facility.value, !!checked)}
+                    />
+                    <span className="text-sm">{facility.label}</span>
+                  </label>
+                ))}
+              </div>
+            </FilterSection>
+          </div>
+        </ScrollArea>
+
+        <SheetFooter className="px-6 py-4 border-t border-border gap-2">
+          <Button variant="ghost" onClick={handleClear} className="flex-1">
+            Clear all
+          </Button>
+          <Button onClick={handleApply} className="flex-1">
+            Apply
+          </Button>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
   );
 };
 
