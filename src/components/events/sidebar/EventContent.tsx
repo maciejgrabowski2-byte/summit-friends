@@ -52,7 +52,7 @@ function EventContent({
   isPastEvent = false
 }: EventContentProps) {
   return (
-    <div className={`flex flex-col gap-3 items-start pb-4 border-b border-solid border-border flex-[1_0_0] ${isPastEvent ? 'overflow-hidden' : ''}`}>
+    <div className={`flex flex-col gap-3 items-start pb-4 flex-[1_0_0] ${isPastEvent ? 'overflow-hidden' : ''}`}>
       <h3 className="self-stretch text-base font-bold text-foreground max-md:text-sm max-sm:text-sm">
         {title}
       </h3>
