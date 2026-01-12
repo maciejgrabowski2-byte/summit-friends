@@ -9,7 +9,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ThemeToggle } from "./ThemeToggle";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -76,7 +75,6 @@ const Navbar = () => {
             <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
               <Search className="w-5 h-5" />
             </Button>
-            <ThemeToggle />
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Avatar className="w-8 h-8 cursor-pointer">
@@ -135,12 +133,9 @@ const Navbar = () => {
                   </Link>
                 )
               ))}
-              <div className="flex items-center gap-2">
-                <Button variant="ghost" className="text-sm font-medium w-fit">
-                  Create event
-                </Button>
-                <ThemeToggle />
-              </div>
+              <Button variant="ghost" className="text-sm font-medium w-fit">
+                Create event
+              </Button>
             </div>
           </div>
         )}
