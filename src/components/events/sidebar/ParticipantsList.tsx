@@ -53,14 +53,9 @@ function ParticipantsList({
         </div>
       )}
       {showButton && (
-        <div className="flex relative justify-center items-center h-[18px] w-[78px]">
-          <div className="relative shrink-0 h-[18px] w-[78px]">
-            <div className="absolute top-0 left-0 rounded bg-primary/10 h-[18px] w-[78px]" />
-            <div className="absolute left-0 h-3 text-xs font-bold text-center text-muted-foreground top-[3px] w-[78px]">
-              Write reviews
-            </div>
-          </div>
-        </div>
+        <button className="px-2 py-1 rounded bg-primary/10 text-xs font-bold text-muted-foreground hover:bg-primary/20 transition-colors">
+          Write reviews
+        </button>
       )}
     </div>
   );
