@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import RoutesFilters, { FiltersState } from "@/components/routes/RoutesFilters";
@@ -22,6 +23,7 @@ const initialFilters: FiltersState = {
 };
 
 const Routes = () => {
+  const navigate = useNavigate();
   const [filters, setFilters] = useState<FiltersState>(initialFilters);
   const [selectedRoute, setSelectedRoute] = useState<Route | null>(null);
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
@@ -78,11 +80,7 @@ const Routes = () => {
   }, [filters]);
 
   const handleSelectRoute = (route: Route) => {
-    setSelectedRoute(route);
-    toast({
-      title: "Route selected",
-      description: `You selected "${route.name}"`,
-    });
+    navigate(`/routes/${route.id}`);
   };
 
   const handleClearSelection = () => {
