@@ -1,7 +1,14 @@
+import { useNavigate } from "react-router-dom";
 import EventCard from "./EventCard";
 import { eventsListData } from "@/data/mockEvents";
 
 const EventsList = () => {
+  const navigate = useNavigate();
+
+  const handleEventClick = (eventId: string | number) => {
+    navigate(`/events/${eventId}`);
+  };
+
   return (
     <div className="space-y-8">
       {Object.entries(eventsListData).map(([dateGroup, events]) => (
@@ -29,7 +36,12 @@ const EventsList = () => {
           {/* Events */}
           <div className="space-y-4">
             {events.map((event) => (
-              <EventCard key={event.id} event={event} variant="row" />
+              <EventCard 
+                key={event.id} 
+                event={event} 
+                variant="row" 
+                onClick={() => handleEventClick(event.id)}
+              />
             ))}
           </div>
         </div>
