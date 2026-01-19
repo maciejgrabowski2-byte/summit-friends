@@ -98,20 +98,20 @@ const Routes = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
 
-      <main className="pt-24 pb-16">
-        <div className="max-w-[1440px] w-full mx-auto px-4 sm:px-6 lg:px-8">
+      <main className="pt-20 md:pt-24 pb-12 md:pb-16">
+        <div className="max-w-[1440px] w-full mx-auto px-4 sm:px-6 md:px-8">
           {/* Header */}
-          <div className="mb-8">
-            <h1 className="text-4xl font-bold text-foreground mb-2">
+          <div className="mb-6 md:mb-8">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-2">
               Explore Routes
             </h1>
-            <p className="text-muted-foreground">
+            <p className="text-sm md:text-base text-muted-foreground">
               Discover {mockRoutes.length} hiking routes across Europe
             </p>
           </div>
 
           {/* Content with inline filter sidebar */}
-          <div className="flex">
+          <div className="flex flex-col md:flex-row">
             {/* Filter Sidebar */}
             <RoutesFilters
               filters={filters}
@@ -124,7 +124,7 @@ const Routes = () => {
             {/* Main Content */}
             <div className="flex-1 min-w-0">
               {/* Results Header */}
-              <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center justify-between mb-4 md:mb-6">
                 <div className="flex items-center gap-2">
                   <span className="text-sm text-muted-foreground">
                     Showing

@@ -141,7 +141,7 @@ function EquipmentSection() {
 
 export function EventInfo() {
   return (
-    <main className="flex flex-col gap-8 w-full max-w-[600px]">
+    <main className="flex flex-col gap-6 md:gap-8 w-full lg:max-w-[600px]">
       <EventHeader />
       <Divider />
       <DescriptionSection />

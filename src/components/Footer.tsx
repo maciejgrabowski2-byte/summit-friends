@@ -1,8 +1,8 @@
 const Footer = () => {
   return (
-    <footer className="bg-foreground text-primary-foreground py-12">
-      <div className="container mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+    <footer className="bg-foreground text-primary-foreground py-8 md:py-12">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-8 md:mb-10">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-2 mb-4">
@@ -53,8 +53,8 @@ const Footer = () => {
         </div>
 
         {/* Bottom */}
-        <div className="pt-8 border-t border-primary-foreground/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-primary-foreground/70">
+        <div className="pt-6 md:pt-8 border-t border-primary-foreground/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-xs md:text-sm text-primary-foreground/70">
             © 2026 Hiking Buddies. All rights reserved.
           </p>
           <div className="flex gap-4">

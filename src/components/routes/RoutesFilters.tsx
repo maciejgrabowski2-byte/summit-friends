@@ -155,7 +155,7 @@ const RoutesFilters = ({ filters, onFiltersChange, onReset, isOpen, onToggle }: 
           variant="outline"
           size="icon"
           onClick={onToggle}
-          className="h-9 w-9 mr-6 relative shrink-0"
+          className="h-9 w-9 mr-4 md:mr-6 relative shrink-0"
         >
           <ListFilter className="h-4 w-4" />
           {activeFilterCount > 0 && (
@@ -173,10 +173,10 @@ const RoutesFilters = ({ filters, onFiltersChange, onReset, isOpen, onToggle }: 
       <div
         className={cn(
           "overflow-hidden transition-all duration-300 ease-in-out",
-          isOpen ? "w-72 mr-6 opacity-100" : "w-0 opacity-0"
+          isOpen ? "w-64 md:w-72 mr-4 md:mr-6 opacity-100" : "w-0 opacity-0"
         )}
       >
-        <div className="w-72 h-full border border-border rounded-xl bg-background flex flex-col">
+        <div className="w-64 md:w-72 h-full border border-border rounded-xl bg-background flex flex-col">
           {/* Header */}
           <div className="px-4 py-3 border-b border-border flex items-center justify-between shrink-0">
             <div className="flex items-center gap-2">

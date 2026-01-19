@@ -134,8 +134,8 @@ function DiscussionSection() {
 
 export function EventSidebar() {
   return (
-    <aside className="w-full lg:w-[400px] shrink-0">
-      <div className="bg-muted rounded-xl p-6 space-y-6">
+    <aside className="w-full lg:w-[360px] xl:w-[400px] shrink-0">
+      <div className="bg-muted rounded-xl p-4 md:p-6 space-y-4 md:space-y-6">
         <OrganizerSection />
         <ParticipantsSection />
         <DiscussionSection />

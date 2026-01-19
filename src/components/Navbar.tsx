@@ -41,7 +41,7 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
               link.href.startsWith("#") ? (
                 <a
@@ -68,7 +68,7 @@ const Navbar = () => {
           </div>
 
           {/* Actions */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-3">
             <Button variant="ghost" className="text-sm font-medium text-foreground">
               Create event
             </Button>
@@ -97,7 +97,7 @@ const Navbar = () => {
 
           {/* Mobile menu button */}
           <button
-            className="md:hidden p-2 text-muted-foreground hover:text-foreground"
+            className="lg:hidden p-2 text-muted-foreground hover:text-foreground"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -106,7 +106,7 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden py-4 border-t border-border animate-fade-in">
+          <div className="lg:hidden py-4 border-t border-border animate-fade-in">
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
                 link.href.startsWith("#") ? (
