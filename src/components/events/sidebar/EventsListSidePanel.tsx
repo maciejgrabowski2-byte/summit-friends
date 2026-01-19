@@ -1,7 +1,10 @@
 import * as React from "react";
 import EventSection from "./EventSection";
+import { useTranslation } from "@/hooks/useTranslation";
 
 function EventsListSidePanel() {
+  const { t } = useTranslation();
+
   const upcomingEvents = [
     {
       date: "Jun 30",
@@ -122,12 +125,12 @@ function EventsListSidePanel() {
   return (
     <aside className="box-border flex flex-col gap-8 items-start px-6 py-8 w-full rounded-xl bg-muted max-w-[363px] max-md:gap-7 max-md:px-5 max-md:py-7 max-md:max-w-full max-sm:gap-6 max-sm:px-4 max-sm:py-6 max-sm:rounded-xl">
       <EventSection
-        title="Your upcoming events"
+        title={t('events.sidebar.yourUpcomingEvents')}
         events={upcomingEvents}
         isPastEvents={false}
       />
       <EventSection
-        title="Your past events"
+        title={t('events.sidebar.yourPastEvents')}
         events={pastEvents}
         isPastEvents={true}
       />

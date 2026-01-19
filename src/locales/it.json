@@ -1,0 +1,41 @@
+{
+  "events": {
+    "pageTitle": "Eventi",
+    "filters": {
+      "upcomingEvents": "Eventi in programma",
+      "fromMunich": "Da Monaco",
+      "allActivities": "Tutte le attività"
+    },
+    "list": {
+      "departingFrom": "Partenza da",
+      "activity": "Attività",
+      "participants": "Partecipanti"
+    },
+    "sidebar": {
+      "yourUpcomingEvents": "I tuoi prossimi eventi",
+      "yourPastEvents": "I tuoi eventi passati",
+      "writeReview": "Scrivi una recensione"
+    },
+    "status": {
+      "full": "Completo",
+      "spotsLeft": "posti rimasti"
+    },
+    "transport": {
+      "train": "Treno",
+      "car": "Auto",
+      "bus": "Autobus"
+    },
+    "levels": {
+      "easy": "Facile",
+      "medium": "Medio",
+      "hard": "Difficile"
+    }
+  },
+  "common": {
+    "loading": "Caricamento...",
+    "error": "Si è verificato un errore",
+    "noResults": "Nessun risultato trovato",
+    "seeAll": "Vedi tutto",
+    "viewDetails": "Vedi dettagli"
+  }
+}

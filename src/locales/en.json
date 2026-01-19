@@ -1,0 +1,41 @@
+{
+  "events": {
+    "pageTitle": "Events",
+    "filters": {
+      "upcomingEvents": "Upcoming events",
+      "fromMunich": "From Munich",
+      "allActivities": "All activities"
+    },
+    "list": {
+      "departingFrom": "Departing from",
+      "activity": "Activity",
+      "participants": "Participants"
+    },
+    "sidebar": {
+      "yourUpcomingEvents": "Your upcoming events",
+      "yourPastEvents": "Your past events",
+      "writeReview": "Write review"
+    },
+    "status": {
+      "full": "Full",
+      "spotsLeft": "spots left"
+    },
+    "transport": {
+      "train": "Train",
+      "car": "Car",
+      "bus": "Bus"
+    },
+    "levels": {
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard"
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "noResults": "No results found",
+    "seeAll": "See all",
+    "viewDetails": "View details"
+  }
+}
