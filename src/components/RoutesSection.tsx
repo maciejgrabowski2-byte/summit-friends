@@ -4,29 +4,32 @@ import swissAlpsImg from "@/assets/route-swiss-alps.jpg";
 import lakeDistrictImg from "@/assets/route-lake-district.jpg";
 import pyreneesImg from "@/assets/route-pyrenees.jpg";
 import tyrolImg from "@/assets/route-tyrol.jpg";
+import { useTranslation } from "@/hooks/useTranslation";
 
 const routes = [
-  { name: "Bavaria, Germany", routes: "823 routes", image: bavariaImg },
-  { name: "Dolomites, Italy", routes: "342 routes", image: dolomitesImg },
-  { name: "Swiss Alps", routes: "912 routes", image: swissAlpsImg },
-  { name: "Lake District, England", routes: "267 routes", image: lakeDistrictImg },
-  { name: "Pyrenees, France", routes: "456 routes", image: pyreneesImg },
-  { name: "Tyrol, Austria", routes: "534 routes", image: tyrolImg },
+  { name: "Bavaria, Germany", routes: 823, image: bavariaImg },
+  { name: "Dolomites, Italy", routes: 342, image: dolomitesImg },
+  { name: "Swiss Alps", routes: 912, image: swissAlpsImg },
+  { name: "Lake District, England", routes: 267, image: lakeDistrictImg },
+  { name: "Pyrenees, France", routes: 456, image: pyreneesImg },
+  { name: "Tyrol, Austria", routes: 534, image: tyrolImg },
 ];
 
 const RoutesSection = () => {
+  const { t } = useTranslation();
+
   return (
     <section id="routes" className="py-16 lg:py-24 bg-secondary/30">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between mb-10">
           <h2 className="text-2xl md:text-3xl font-bold text-foreground">
-            Explore hiking routes
+            {t('routesSection.title')}
           </h2>
           <a
             href="#"
             className="text-primary font-semibold hover:underline underline-offset-4 hidden sm:inline-flex items-center"
           >
-            Explore more routes
+            {t('routesSection.exploreMore')}
             <svg className="w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
@@ -51,7 +54,7 @@ const RoutesSection = () => {
               <h3 className="font-semibold text-foreground text-sm group-hover:text-primary transition-colors">
                 {route.name}
               </h3>
-              <p className="text-xs text-muted-foreground">{route.routes}</p>
+              <p className="text-xs text-muted-foreground">{route.routes} {t('routesSection.routes')}</p>
             </a>
           ))}
         </div>
@@ -60,7 +63,7 @@ const RoutesSection = () => {
           href="#"
           className="text-primary font-semibold hover:underline underline-offset-4 inline-flex items-center mt-8 sm:hidden"
         >
-          Explore more routes
+          {t('routesSection.exploreMore')}
           <svg className="w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M5 12h14M12 5l7 7-7 7" />
           </svg>

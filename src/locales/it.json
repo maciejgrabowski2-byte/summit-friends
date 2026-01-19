@@ -1,4 +1,74 @@
 {
+  "nav": {
+    "events": "Eventi",
+    "routes": "Percorsi",
+    "community": "Comunità",
+    "createEvent": "Crea evento",
+    "userProfile": "Profilo utente",
+    "logOut": "Esci"
+  },
+  "hero": {
+    "title": "Le avventure sono migliori con gli amici",
+    "description": "Hiking Buddies è una comunità no-profit di amanti della natura e dello sport. Partecipa a un evento di escursionismo, arrampicata, ciclismo – o organizza il tuo e goditi le tue avventure con persone che la pensano come te!",
+    "searchPlaceholder": "Cerca località o attività...",
+    "explore": "Esplora",
+    "activeMembers": "Membri attivi",
+    "eventsMonthly": "Eventi mensili",
+    "countries": "Paesi",
+    "nextAdventure": "Prossima avventura",
+    "thisSaturday": "Questo sabato, ore 8"
+  },
+  "activities": {
+    "title": "Esplora le attività",
+    "hiking": "Escursionismo",
+    "climbing": "Arrampicata",
+    "cycling": "Ciclismo",
+    "waterSports": "Sport acquatici",
+    "running": "Corsa",
+    "skiing": "Sci",
+    "allActivities": "Tutte le attività",
+    "events": "eventi"
+  },
+  "mission": {
+    "title": "Cosa rappresentiamo",
+    "paragraph1": "Siamo una comunità di amanti degli sport all'aria aperta e instancabili esploratori di montagne, e crediamo che sia più divertente farlo insieme. La maggior parte dei nostri eventi sono organizzati da membri appassionati della comunità, proprio come te, e quindi gratuiti ad eccezione dei costi di trasporto e personali.",
+    "paragraph2": "La nostra missione è semplice: connettere persone che condividono l'amore per l'avventura e la vita all'aria aperta. Che tu sia un alpinista esperto o stia appena iniziando il tuo viaggio, c'è un posto per te qui.",
+    "learnMore": "Scopri di più sulle regole e i valori della comunità"
+  },
+  "eventsGallery": {
+    "title": "Eventi in programma",
+    "subtitle": "Unisciti alle avventure in arrivo",
+    "viewAll": "Vedi tutti gli eventi"
+  },
+  "routesSection": {
+    "title": "Esplora i percorsi escursionistici",
+    "exploreMore": "Esplora altri percorsi",
+    "routes": "percorsi"
+  },
+  "communities": {
+    "title": "Unisciti alla tua comunità locale",
+    "description": "Trova compagni di avventura nella tua città. Le nostre comunità organizzano incontri regolari, condividono consigli sui sentieri locali e creano amicizie durature.",
+    "viewAll": "Vedi tutte le comunità"
+  },
+  "footer": {
+    "tagline": "Connettere appassionati di outdoor in tutto il mondo dal 2020.",
+    "explore": "Esplora",
+    "company": "Azienda",
+    "legal": "Legale",
+    "events": "Eventi",
+    "routes": "Percorsi",
+    "communities": "Comunità",
+    "activities": "Attività",
+    "aboutUs": "Chi siamo",
+    "blog": "Blog",
+    "careers": "Carriere",
+    "contact": "Contatti",
+    "privacyPolicy": "Informativa sulla privacy",
+    "termsOfService": "Termini di servizio",
+    "cookiePolicy": "Politica sui cookie",
+    "imprint": "Impronta",
+    "copyright": "© 2026 Hiking Buddies. Tutti i diritti riservati."
+  },
   "events": {
     "pageTitle": "Eventi",
     "filters": {
@@ -18,12 +88,17 @@
     },
     "status": {
       "full": "Completo",
-      "spotsLeft": "posti rimasti"
+      "spotsLeft": "posti rimasti",
+      "available": "disponibili",
+      "coming": "iscritti",
+      "waitlist": "in lista d'attesa"
     },
     "transport": {
       "train": "Treno",
       "car": "Auto",
-      "bus": "Autobus"
+      "bus": "Autobus",
+      "carpool": "Carpooling",
+      "noTransport": "Senza trasporto"
     },
     "levels": {
       "easy": "Facile",
@@ -31,11 +106,53 @@
       "hard": "Difficile"
     }
   },
+  "routes": {
+    "pageTitle": "Libreria percorsi",
+    "pageDescription": "Scopri ed esplora la nostra collezione di percorsi escursionistici da tutto il mondo.",
+    "filters": {
+      "title": "Filtri",
+      "difficulty": "Difficoltà",
+      "technicalLevel": "Livello tecnico",
+      "distance": "Distanza",
+      "duration": "Durata",
+      "elevationGain": "Dislivello positivo",
+      "routeType": "Tipo di percorso",
+      "highlights": "Punti salienti",
+      "features": "Caratteristiche",
+      "facilities": "Strutture",
+      "clearAll": "Cancella tutti i filtri"
+    }
+  },
+  "profile": {
+    "reviews": "recensioni",
+    "showAll": "Mostra tutto",
+    "reviewsTitle": "RECENSIONI DI {name} ({count})",
+    "activitiesTitle": "ATTIVITÀ DI {name}",
+    "tabs": {
+      "upcoming": "In arrivo",
+      "recent": "Recente",
+      "past": "Passato",
+      "organised": "Organizzato",
+      "lastMonth": "ULTIMO MESE",
+      "allTime": "TUTTO IL TEMPO",
+      "lastYear": "ULTIMO ANNO"
+    },
+    "stats": {
+      "distance": "Distanza",
+      "elevation": "Dislivello"
+    },
+    "noActivities": {
+      "recent": "Nessuna attività recente",
+      "past": "Le attività passate saranno mostrate qui",
+      "organised": "Le attività organizzate saranno mostrate qui"
+    }
+  },
   "common": {
     "loading": "Caricamento...",
     "error": "Si è verificato un errore",
     "noResults": "Nessun risultato trovato",
     "seeAll": "Vedi tutto",
-    "viewDetails": "Vedi dettagli"
+    "viewDetails": "Vedi dettagli",
+    "by": "di"
   }
 }

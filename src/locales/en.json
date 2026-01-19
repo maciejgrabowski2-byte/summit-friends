@@ -1,4 +1,74 @@
 {
+  "nav": {
+    "events": "Events",
+    "routes": "Routes",
+    "community": "Community",
+    "createEvent": "Create event",
+    "userProfile": "User profile",
+    "logOut": "Log out"
+  },
+  "hero": {
+    "title": "Adventures are better with buddies",
+    "description": "Hiking Buddies is a non-profit community of outdoor and sport lovers. Join an upcoming hiking, climbing, cycling – you name it – event or organise your own and enjoy your adventures with like-minded people!",
+    "searchPlaceholder": "Search location or activity...",
+    "explore": "Explore",
+    "activeMembers": "Active members",
+    "eventsMonthly": "Events monthly",
+    "countries": "Countries",
+    "nextAdventure": "Next Adventure",
+    "thisSaturday": "This Saturday, 8 AM"
+  },
+  "activities": {
+    "title": "Explore activities",
+    "hiking": "Hiking",
+    "climbing": "Climbing",
+    "cycling": "Cycling",
+    "waterSports": "Water sports",
+    "running": "Running",
+    "skiing": "Skiing",
+    "allActivities": "All activities",
+    "events": "events"
+  },
+  "mission": {
+    "title": "What we stand for",
+    "paragraph1": "We are a community of outdoor sports lovers and restless mountain explorers, and we believe it's more fun to do it together. Most of our events are organized by passionate community members, just like you, and therefore free of charge except transportation and personal costs.",
+    "paragraph2": "Our mission is simple: connect people who share a love for adventure and the great outdoors. Whether you're a seasoned mountaineer or just starting your journey, there's a place for you here.",
+    "learnMore": "More about community rules and values"
+  },
+  "eventsGallery": {
+    "title": "Upcoming events",
+    "subtitle": "Join adventures happening soon",
+    "viewAll": "View all events"
+  },
+  "routesSection": {
+    "title": "Explore hiking routes",
+    "exploreMore": "Explore more routes",
+    "routes": "routes"
+  },
+  "communities": {
+    "title": "Join your local community",
+    "description": "Find adventure buddies in your city. Our communities organize regular meetups, share local trail tips, and create lasting friendships.",
+    "viewAll": "View all communities"
+  },
+  "footer": {
+    "tagline": "Connecting outdoor enthusiasts worldwide since 2020.",
+    "explore": "Explore",
+    "company": "Company",
+    "legal": "Legal",
+    "events": "Events",
+    "routes": "Routes",
+    "communities": "Communities",
+    "activities": "Activities",
+    "aboutUs": "About us",
+    "blog": "Blog",
+    "careers": "Careers",
+    "contact": "Contact",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "cookiePolicy": "Cookie Policy",
+    "imprint": "Imprint",
+    "copyright": "© 2026 Hiking Buddies. All rights reserved."
+  },
   "events": {
     "pageTitle": "Events",
     "filters": {
@@ -18,12 +88,17 @@
     },
     "status": {
       "full": "Full",
-      "spotsLeft": "spots left"
+      "spotsLeft": "spots left",
+      "available": "available",
+      "coming": "coming",
+      "waitlist": "in waitlist"
     },
     "transport": {
       "train": "Train",
       "car": "Car",
-      "bus": "Bus"
+      "bus": "Bus",
+      "carpool": "Carpool",
+      "noTransport": "No transport"
     },
     "levels": {
       "easy": "Easy",
@@ -31,11 +106,53 @@
       "hard": "Hard"
     }
   },
+  "routes": {
+    "pageTitle": "Routes Library",
+    "pageDescription": "Discover and explore our collection of hiking routes from around the world.",
+    "filters": {
+      "title": "Filters",
+      "difficulty": "Difficulty",
+      "technicalLevel": "Technical Level",
+      "distance": "Distance",
+      "duration": "Duration",
+      "elevationGain": "Elevation Gain",
+      "routeType": "Route Type",
+      "highlights": "Highlights",
+      "features": "Features",
+      "facilities": "Facilities",
+      "clearAll": "Clear all filters"
+    }
+  },
+  "profile": {
+    "reviews": "reviews",
+    "showAll": "Show all",
+    "reviewsTitle": "{name}'S REVIEWS ({count})",
+    "activitiesTitle": "{name}'S ACTIVITIES",
+    "tabs": {
+      "upcoming": "Upcoming",
+      "recent": "Recent",
+      "past": "Past",
+      "organised": "Organised",
+      "lastMonth": "LAST MONTH",
+      "allTime": "ALL TIME",
+      "lastYear": "LAST YEAR"
+    },
+    "stats": {
+      "distance": "Distance",
+      "elevation": "Elevation"
+    },
+    "noActivities": {
+      "recent": "No recent activities",
+      "past": "Past activities will be shown here",
+      "organised": "Organised activities will be shown here"
+    }
+  },
   "common": {
     "loading": "Loading...",
     "error": "An error occurred",
     "noResults": "No results found",
     "seeAll": "See all",
-    "viewDetails": "View details"
+    "viewDetails": "View details",
+    "by": "by"
   }
 }
