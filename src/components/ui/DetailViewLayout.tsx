@@ -31,8 +31,8 @@ export function DetailViewLayout({
           {leftColumn}
         </div>
 
-        {/* Middle column: Main Content */}
-        <div className="w-full lg:flex-[1.2] lg:min-w-0">
+        {/* Middle column: Main Content - grows to fill space, min-width matches sidebar */}
+        <div className="w-full lg:flex-[2] lg:min-w-[280px] xl:min-w-[320px]">
           {mainContent}
         </div>
 
