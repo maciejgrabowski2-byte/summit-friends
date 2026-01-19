@@ -1,0 +1,41 @@
+{
+  "events": {
+    "pageTitle": "Eventos",
+    "filters": {
+      "upcomingEvents": "Próximos eventos",
+      "fromMunich": "Desde Múnich",
+      "allActivities": "Todas las actividades"
+    },
+    "list": {
+      "departingFrom": "Salida desde",
+      "activity": "Actividad",
+      "participants": "Participantes"
+    },
+    "sidebar": {
+      "yourUpcomingEvents": "Tus próximos eventos",
+      "yourPastEvents": "Tus eventos pasados",
+      "writeReview": "Escribir reseña"
+    },
+    "status": {
+      "full": "Completo",
+      "spotsLeft": "plazas disponibles"
+    },
+    "transport": {
+      "train": "Tren",
+      "car": "Coche",
+      "bus": "Autobús"
+    },
+    "levels": {
+      "easy": "Fácil",
+      "medium": "Medio",
+      "hard": "Difícil"
+    }
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Se produjo un error",
+    "noResults": "No se encontraron resultados",
+    "seeAll": "Ver todo",
+    "viewDetails": "Ver detalles"
+  }
+}
