@@ -53,12 +53,12 @@ const UserProfile = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <main className="pt-16">
-        <div className="max-w-[1440px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="pt-16 md:pt-20">
+        <div className="max-w-[1440px] w-full mx-auto px-4 sm:px-6 md:px-8 py-6 md:py-8">
           {/* Desktop Layout - Two columns */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
             {/* Left Column - Profile Info */}
-            <div className="lg:col-span-1 space-y-6 w-full max-w-[360px] mx-auto lg:mx-0">
+            <div className="lg:col-span-1 space-y-4 md:space-y-6 w-full max-w-[360px] mx-auto lg:mx-0">
               {/* Profile Header */}
               <Card className="border-0 bg-[#F2F3F6] relative">
                 <Button variant="ghost" size="icon" className="absolute right-2 top-2">
@@ -161,7 +161,7 @@ const UserProfile = () => {
             </div>
 
             {/* Right Column - Reviews & Activities */}
-            <div className="lg:col-span-2 space-y-6">
+            <div className="lg:col-span-2 space-y-4 md:space-y-6">
               {/* Reviews Section - Horizontal */}
               <div>
                 <div className="flex items-center justify-between mb-4">

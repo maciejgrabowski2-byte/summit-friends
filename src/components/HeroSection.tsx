@@ -5,16 +5,16 @@ import heroImage from "@/assets/hero-hiking.jpg";
 
 const HeroSection = () => {
   return (
-    <section className="pt-24 pb-16 lg:pt-32 lg:pb-24">
-      <div className="container mx-auto px-4 sm:px-6">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+    <section className="pt-20 pb-12 sm:pt-24 sm:pb-16 lg:pt-32 lg:pb-24">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
           {/* Left Content */}
-          <div className="space-y-8 animate-fade-in">
-            <div className="space-y-4">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-foreground leading-tight text-balance">
+          <div className="space-y-6 md:space-y-8 animate-fade-in">
+            <div className="space-y-3 md:space-y-4">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-foreground leading-tight text-balance">
                 Adventures are better with buddies
               </h1>
-              <p className="text-lg text-muted-foreground max-w-lg">
+              <p className="text-base md:text-lg text-muted-foreground max-w-lg">
                 Hiking Buddies is a non-profit community of outdoor and sport lovers. Join an upcoming hiking, climbing, cycling – you name it – event or organise your own and enjoy your adventures with like-minded people!
               </p>
             </div>
@@ -36,18 +36,18 @@ const HeroSection = () => {
             </div>
 
             {/* Stats */}
-            <div className="flex gap-8 pt-4">
+            <div className="flex gap-6 md:gap-8 pt-2 md:pt-4">
               <div>
-                <p className="text-2xl font-bold text-foreground">12k+</p>
-                <p className="text-sm text-muted-foreground">Active members</p>
+                <p className="text-xl md:text-2xl font-bold text-foreground">12k+</p>
+                <p className="text-xs md:text-sm text-muted-foreground">Active members</p>
               </div>
               <div>
-                <p className="text-2xl font-bold text-foreground">500+</p>
-                <p className="text-sm text-muted-foreground">Events monthly</p>
+                <p className="text-xl md:text-2xl font-bold text-foreground">500+</p>
+                <p className="text-xs md:text-sm text-muted-foreground">Events monthly</p>
               </div>
               <div>
-                <p className="text-2xl font-bold text-foreground">25+</p>
-                <p className="text-sm text-muted-foreground">Countries</p>
+                <p className="text-xl md:text-2xl font-bold text-foreground">25+</p>
+                <p className="text-xs md:text-sm text-muted-foreground">Countries</p>
               </div>
             </div>
           </div>

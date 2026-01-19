@@ -18,16 +18,16 @@ export function DetailViewLayout({
   sidebar,
 }: DetailViewLayoutProps) {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 md:space-y-6">
       {heroImage && (
-        <div className="w-full h-[200px] sm:h-[300px] rounded-xl overflow-hidden">
+        <div className="w-full h-[180px] sm:h-[240px] md:h-[300px] rounded-xl overflow-hidden">
           {heroImage}
         </div>
       )}
 
-      <div className="flex flex-col xl:flex-row gap-8">
+      <div className="flex flex-col lg:flex-row gap-4 md:gap-6 lg:gap-8">
         {/* Left column: Gallery/Map */}
-        <div className="w-full xl:w-auto">
+        <div className="w-full lg:w-auto">
           {leftColumn}
         </div>
 
