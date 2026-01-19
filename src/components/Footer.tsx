@@ -1,4 +1,8 @@
+import { useTranslation } from "@/hooks/useTranslation";
+
 const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <footer className="bg-foreground text-primary-foreground py-8 md:py-12">
       <div className="container mx-auto px-4 sm:px-6 md:px-8">
@@ -14,40 +18,40 @@ const Footer = () => {
               <span className="text-lg font-bold">Hiking Buddies</span>
             </div>
             <p className="text-sm text-primary-foreground/70">
-              Connecting outdoor enthusiasts worldwide since 2020.
+              {t('footer.tagline')}
             </p>
           </div>
 
           {/* Explore */}
           <div>
-            <h4 className="font-semibold mb-4 text-sm">Explore</h4>
+            <h4 className="font-semibold mb-4 text-sm">{t('footer.explore')}</h4>
             <ul className="space-y-2 text-sm text-primary-foreground/70">
-              <li><a href="#" className="hover:text-primary-foreground transition-colors">Events</a></li>
-              <li><a href="#" className="hover:text-primary-foreground transition-colors">Routes</a></li>
-              <li><a href="#" className="hover:text-primary-foreground transition-colors">Communities</a></li>
-              <li><a href="#" className="hover:text-primary-foreground transition-colors">Activities</a></li>
+              <li><a href="#" className="hover:text-primary-foreground transition-colors">{t('footer.events')}</a></li>
+              <li><a href="#" className="hover:text-primary-foreground transition-colors">{t('footer.routes')}</a></li>
+              <li><a href="#" className="hover:text-primary-foreground transition-colors">{t('footer.communities')}</a></li>
+              <li><a href="#" className="hover:text-primary-foreground transition-colors">{t('footer.activities')}</a></li>
             </ul>
           </div>
 
           {/* Company */}
           <div>
-            <h4 className="font-semibold mb-4 text-sm">Company</h4>
+            <h4 className="font-semibold mb-4 text-sm">{t('footer.company')}</h4>
             <ul className="space-y-2 text-sm text-primary-foreground/70">
-              <li><a href="#" className="hover:text-primary-foreground transition-colors">About us</a></li>
-              <li><a href="#" className="hover:text-primary-foreground transition-colors">Blog</a></li>
-              <li><a href="#" className="hover:text-primary-foreground transition-colors">Careers</a></li>
-              <li><a href="#" className="hover:text-primary-foreground transition-colors">Contact</a></li>
+              <li><a href="#" className="hover:text-primary-foreground transition-colors">{t('footer.aboutUs')}</a></li>
+              <li><a href="#" className="hover:text-primary-foreground transition-colors">{t('footer.blog')}</a></li>
+              <li><a href="#" className="hover:text-primary-foreground transition-colors">{t('footer.careers')}</a></li>
+              <li><a href="#" className="hover:text-primary-foreground transition-colors">{t('footer.contact')}</a></li>
             </ul>
           </div>
 
           {/* Legal */}
           <div>
-            <h4 className="font-semibold mb-4 text-sm">Legal</h4>
+            <h4 className="font-semibold mb-4 text-sm">{t('footer.legal')}</h4>
             <ul className="space-y-2 text-sm text-primary-foreground/70">
-              <li><a href="#" className="hover:text-primary-foreground transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-primary-foreground transition-colors">Terms of Service</a></li>
-              <li><a href="#" className="hover:text-primary-foreground transition-colors">Cookie Policy</a></li>
-              <li><a href="#" className="hover:text-primary-foreground transition-colors">Imprint</a></li>
+              <li><a href="#" className="hover:text-primary-foreground transition-colors">{t('footer.privacyPolicy')}</a></li>
+              <li><a href="#" className="hover:text-primary-foreground transition-colors">{t('footer.termsOfService')}</a></li>
+              <li><a href="#" className="hover:text-primary-foreground transition-colors">{t('footer.cookiePolicy')}</a></li>
+              <li><a href="#" className="hover:text-primary-foreground transition-colors">{t('footer.imprint')}</a></li>
             </ul>
           </div>
         </div>
@@ -55,7 +59,7 @@ const Footer = () => {
         {/* Bottom */}
         <div className="pt-6 md:pt-8 border-t border-primary-foreground/10 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs md:text-sm text-primary-foreground/70">
-            © 2026 Hiking Buddies. All rights reserved.
+            {t('footer.copyright')}
           </p>
           <div className="flex gap-4">
             <a href="#" className="w-8 h-8 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-primary-foreground/20 transition-colors">

@@ -1,4 +1,5 @@
 import { MapPin, Users } from "lucide-react";
+import { useTranslation } from "@/hooks/useTranslation";
 
 const communities = [
   { city: "Munich", country: "Germany", members: "2,450", flag: "🇩🇪" },
@@ -12,15 +13,17 @@ const communities = [
 ];
 
 const CommunitiesSection = () => {
+  const { t } = useTranslation();
+
   return (
     <section id="community" className="py-16 lg:py-24">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center mb-12">
           <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-            Join your local community
+            {t('communities.title')}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Find adventure buddies in your city. Our communities organize regular meetups, share local trail tips, and create lasting friendships.
+            {t('communities.description')}
           </p>
         </div>
 
@@ -55,7 +58,7 @@ const CommunitiesSection = () => {
             href="#"
             className="inline-flex items-center text-primary font-semibold hover:underline underline-offset-4"
           >
-            View all communities
+            {t('communities.viewAll')}
             <svg className="w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>

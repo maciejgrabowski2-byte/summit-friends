@@ -1,4 +1,74 @@
 {
+  "nav": {
+    "events": "Eventos",
+    "routes": "Rutas",
+    "community": "Comunidad",
+    "createEvent": "Crear evento",
+    "userProfile": "Perfil de usuario",
+    "logOut": "Cerrar sesión"
+  },
+  "hero": {
+    "title": "Las aventuras son mejores con amigos",
+    "description": "Hiking Buddies es una comunidad sin ánimo de lucro de amantes del aire libre y el deporte. ¡Únete a un evento de senderismo, escalada, ciclismo – o organiza el tuyo y disfruta de tus aventuras con personas afines!",
+    "searchPlaceholder": "Buscar ubicación o actividad...",
+    "explore": "Explorar",
+    "activeMembers": "Miembros activos",
+    "eventsMonthly": "Eventos mensuales",
+    "countries": "Países",
+    "nextAdventure": "Próxima aventura",
+    "thisSaturday": "Este sábado, 8 AM"
+  },
+  "activities": {
+    "title": "Explorar actividades",
+    "hiking": "Senderismo",
+    "climbing": "Escalada",
+    "cycling": "Ciclismo",
+    "waterSports": "Deportes acuáticos",
+    "running": "Carrera",
+    "skiing": "Esquí",
+    "allActivities": "Todas las actividades",
+    "events": "eventos"
+  },
+  "mission": {
+    "title": "Lo que representamos",
+    "paragraph1": "Somos una comunidad de amantes de los deportes al aire libre y exploradores incansables de montañas, y creemos que es más divertido hacerlo juntos. La mayoría de nuestros eventos son organizados por miembros apasionados de la comunidad, como tú, y por lo tanto son gratuitos excepto los costos de transporte y personales.",
+    "paragraph2": "Nuestra misión es simple: conectar personas que comparten el amor por la aventura y el aire libre. Ya seas un montañero experimentado o estés comenzando tu viaje, hay un lugar para ti aquí.",
+    "learnMore": "Más sobre las reglas y valores de la comunidad"
+  },
+  "eventsGallery": {
+    "title": "Próximos eventos",
+    "subtitle": "Únete a las aventuras que vienen pronto",
+    "viewAll": "Ver todos los eventos"
+  },
+  "routesSection": {
+    "title": "Explorar rutas de senderismo",
+    "exploreMore": "Explorar más rutas",
+    "routes": "rutas"
+  },
+  "communities": {
+    "title": "Únete a tu comunidad local",
+    "description": "Encuentra compañeros de aventura en tu ciudad. Nuestras comunidades organizan encuentros regulares, comparten consejos sobre senderos locales y crean amistades duraderas.",
+    "viewAll": "Ver todas las comunidades"
+  },
+  "footer": {
+    "tagline": "Conectando entusiastas del aire libre en todo el mundo desde 2020.",
+    "explore": "Explorar",
+    "company": "Empresa",
+    "legal": "Legal",
+    "events": "Eventos",
+    "routes": "Rutas",
+    "communities": "Comunidades",
+    "activities": "Actividades",
+    "aboutUs": "Sobre nosotros",
+    "blog": "Blog",
+    "careers": "Carreras",
+    "contact": "Contacto",
+    "privacyPolicy": "Política de privacidad",
+    "termsOfService": "Términos de servicio",
+    "cookiePolicy": "Política de cookies",
+    "imprint": "Aviso legal",
+    "copyright": "© 2026 Hiking Buddies. Todos los derechos reservados."
+  },
   "events": {
     "pageTitle": "Eventos",
     "filters": {
@@ -18,12 +88,17 @@
     },
     "status": {
       "full": "Completo",
-      "spotsLeft": "plazas disponibles"
+      "spotsLeft": "plazas disponibles",
+      "available": "disponibles",
+      "coming": "inscritos",
+      "waitlist": "en lista de espera"
     },
     "transport": {
       "train": "Tren",
       "car": "Coche",
-      "bus": "Autobús"
+      "bus": "Autobús",
+      "carpool": "Coche compartido",
+      "noTransport": "Sin transporte"
     },
     "levels": {
       "easy": "Fácil",
@@ -31,11 +106,53 @@
       "hard": "Difícil"
     }
   },
+  "routes": {
+    "pageTitle": "Biblioteca de rutas",
+    "pageDescription": "Descubre y explora nuestra colección de rutas de senderismo de todo el mundo.",
+    "filters": {
+      "title": "Filtros",
+      "difficulty": "Dificultad",
+      "technicalLevel": "Nivel técnico",
+      "distance": "Distancia",
+      "duration": "Duración",
+      "elevationGain": "Desnivel positivo",
+      "routeType": "Tipo de ruta",
+      "highlights": "Destacados",
+      "features": "Características",
+      "facilities": "Instalaciones",
+      "clearAll": "Borrar todos los filtros"
+    }
+  },
+  "profile": {
+    "reviews": "reseñas",
+    "showAll": "Mostrar todo",
+    "reviewsTitle": "RESEÑAS DE {name} ({count})",
+    "activitiesTitle": "ACTIVIDADES DE {name}",
+    "tabs": {
+      "upcoming": "Próximos",
+      "recent": "Reciente",
+      "past": "Pasado",
+      "organised": "Organizado",
+      "lastMonth": "ÚLTIMO MES",
+      "allTime": "TODO EL TIEMPO",
+      "lastYear": "ÚLTIMO AÑO"
+    },
+    "stats": {
+      "distance": "Distancia",
+      "elevation": "Desnivel"
+    },
+    "noActivities": {
+      "recent": "No hay actividades recientes",
+      "past": "Las actividades pasadas se mostrarán aquí",
+      "organised": "Las actividades organizadas se mostrarán aquí"
+    }
+  },
   "common": {
     "loading": "Cargando...",
     "error": "Se produjo un error",
     "noResults": "No se encontraron resultados",
     "seeAll": "Ver todo",
-    "viewDetails": "Ver detalles"
+    "viewDetails": "Ver detalles",
+    "by": "por"
   }
 }

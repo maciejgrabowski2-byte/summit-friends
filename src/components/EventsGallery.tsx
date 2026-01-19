@@ -3,9 +3,11 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import EventCard from "@/components/events/EventCard";
 import { galleryEvents } from "@/data/mockEvents";
+import { useTranslation } from "@/hooks/useTranslation";
 
 const EventsGallery = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
 
   const scroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
@@ -23,9 +25,9 @@ const EventsGallery = () => {
         <div className="flex items-center justify-between mb-10">
           <div>
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
-              Upcoming events
+              {t('eventsGallery.title')}
             </h2>
-            <p className="text-muted-foreground">Join adventures happening soon</p>
+            <p className="text-muted-foreground">{t('eventsGallery.subtitle')}</p>
           </div>
           <div className="flex gap-2">
             <Button
@@ -67,7 +69,7 @@ const EventsGallery = () => {
             href="#"
             className="inline-flex items-center text-primary font-semibold hover:underline underline-offset-4"
           >
-            View all events
+            {t('eventsGallery.viewAll')}
             <svg
               className="w-4 h-4 ml-1"
               viewBox="0 0 24 24"

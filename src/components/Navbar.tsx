@@ -22,12 +22,12 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const { locale, setLocale } = useTranslation();
+  const { locale, setLocale, t } = useTranslation();
 
   const navLinks = [
-    { href: "/events", label: "Events" },
-    { href: "/routes", label: "Routes" },
-    { href: "#community", label: "Community" },
+    { href: "/events", label: t('nav.events') },
+    { href: "/routes", label: t('nav.routes') },
+    { href: "#community", label: t('nav.community') },
   ];
 
   const isActive = (href: string) => {
@@ -79,7 +79,7 @@ const Navbar = () => {
           {/* Actions */}
           <div className="hidden lg:flex items-center gap-3">
             <Button variant="ghost" className="text-sm font-medium text-foreground">
-              Create event
+              {t('nav.createEvent')}
             </Button>
             <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
               <Search className="w-5 h-5" />
@@ -116,11 +116,11 @@ const Navbar = () => {
               <DropdownMenuContent align="end" className="w-48 bg-background border border-border z-50">
                 <DropdownMenuItem onClick={() => navigate('/userprofile')}>
                   <User className="w-4 h-4 mr-2" />
-                  User profile
+                  {t('nav.userProfile')}
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => console.log('Log out clicked')}>
                   <LogOut className="w-4 h-4 mr-2" />
-                  Log out
+                  {t('nav.logOut')}
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -165,7 +165,7 @@ const Navbar = () => {
                 )
               ))}
               <Button variant="ghost" className="text-sm font-medium w-fit">
-                Create event
+                {t('nav.createEvent')}
               </Button>
               
               {/* Mobile Language Selector */}

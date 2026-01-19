@@ -2,8 +2,11 @@ import { Search, MapPin } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-hiking.jpg";
+import { useTranslation } from "@/hooks/useTranslation";
 
 const HeroSection = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="pt-20 pb-12 sm:pt-24 sm:pb-16 lg:pt-32 lg:pb-24">
       <div className="container mx-auto px-4 sm:px-6 md:px-8">
@@ -12,10 +15,10 @@ const HeroSection = () => {
           <div className="space-y-6 md:space-y-8 animate-fade-in">
             <div className="space-y-3 md:space-y-4">
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-foreground leading-tight text-balance">
-                Adventures are better with buddies
+                {t('hero.title')}
               </h1>
               <p className="text-base md:text-lg text-muted-foreground max-w-lg">
-                Hiking Buddies is a non-profit community of outdoor and sport lovers. Join an upcoming hiking, climbing, cycling – you name it – event or organise your own and enjoy your adventures with like-minded people!
+                {t('hero.description')}
               </p>
             </div>
 
@@ -25,13 +28,13 @@ const HeroSection = () => {
                 <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                 <Input
                   type="text"
-                  placeholder="Search location or activity..."
+                  placeholder={t('hero.searchPlaceholder')}
                   className="pl-10 h-12 bg-secondary border-0 focus:ring-2 focus:ring-primary/20"
                 />
               </div>
               <Button variant="primary" size="lg" className="h-12 px-6">
                 <Search className="w-5 h-5 mr-2" />
-                Explore
+                {t('hero.explore')}
               </Button>
             </div>
 
@@ -39,15 +42,15 @@ const HeroSection = () => {
             <div className="flex gap-6 md:gap-8 pt-2 md:pt-4">
               <div>
                 <p className="text-xl md:text-2xl font-bold text-foreground">12k+</p>
-                <p className="text-xs md:text-sm text-muted-foreground">Active members</p>
+                <p className="text-xs md:text-sm text-muted-foreground">{t('hero.activeMembers')}</p>
               </div>
               <div>
                 <p className="text-xl md:text-2xl font-bold text-foreground">500+</p>
-                <p className="text-xs md:text-sm text-muted-foreground">Events monthly</p>
+                <p className="text-xs md:text-sm text-muted-foreground">{t('hero.eventsMonthly')}</p>
               </div>
               <div>
                 <p className="text-xl md:text-2xl font-bold text-foreground">25+</p>
-                <p className="text-xs md:text-sm text-muted-foreground">Countries</p>
+                <p className="text-xs md:text-sm text-muted-foreground">{t('hero.countries')}</p>
               </div>
             </div>
           </div>
@@ -68,8 +71,8 @@ const HeroSection = () => {
                   <span className="text-lg">🥾</span>
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-foreground">Next Adventure</p>
-                  <p className="text-xs text-muted-foreground">This Saturday, 8 AM</p>
+                  <p className="text-sm font-semibold text-foreground">{t('hero.nextAdventure')}</p>
+                  <p className="text-xs text-muted-foreground">{t('hero.thisSaturday')}</p>
                 </div>
               </div>
             </div>

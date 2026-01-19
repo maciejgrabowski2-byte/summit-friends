@@ -1,4 +1,74 @@
 {
+  "nav": {
+    "events": "Événements",
+    "routes": "Itinéraires",
+    "community": "Communauté",
+    "createEvent": "Créer un événement",
+    "userProfile": "Profil utilisateur",
+    "logOut": "Déconnexion"
+  },
+  "hero": {
+    "title": "Les aventures sont meilleures entre amis",
+    "description": "Hiking Buddies est une communauté à but non lucratif de passionnés de plein air et de sport. Rejoignez un événement de randonnée, d'escalade, de vélo – ou organisez le vôtre et profitez de vos aventures avec des personnes partageant les mêmes idées !",
+    "searchPlaceholder": "Rechercher un lieu ou une activité...",
+    "explore": "Explorer",
+    "activeMembers": "Membres actifs",
+    "eventsMonthly": "Événements mensuels",
+    "countries": "Pays",
+    "nextAdventure": "Prochaine aventure",
+    "thisSaturday": "Ce samedi, 8h"
+  },
+  "activities": {
+    "title": "Explorer les activités",
+    "hiking": "Randonnée",
+    "climbing": "Escalade",
+    "cycling": "Cyclisme",
+    "waterSports": "Sports nautiques",
+    "running": "Course à pied",
+    "skiing": "Ski",
+    "allActivities": "Toutes les activités",
+    "events": "événements"
+  },
+  "mission": {
+    "title": "Ce que nous défendons",
+    "paragraph1": "Nous sommes une communauté de passionnés de sports de plein air et d'explorateurs de montagnes infatigables, et nous croyons que c'est plus amusant de le faire ensemble. La plupart de nos événements sont organisés par des membres passionnés de la communauté, tout comme vous, et sont donc gratuits, à l'exception des frais de transport et personnels.",
+    "paragraph2": "Notre mission est simple : connecter les personnes qui partagent une passion pour l'aventure et le grand air. Que vous soyez un alpiniste chevronné ou que vous commenciez tout juste votre voyage, il y a une place pour vous ici.",
+    "learnMore": "En savoir plus sur les règles et valeurs de la communauté"
+  },
+  "eventsGallery": {
+    "title": "Événements à venir",
+    "subtitle": "Rejoignez les aventures qui arrivent bientôt",
+    "viewAll": "Voir tous les événements"
+  },
+  "routesSection": {
+    "title": "Explorer les itinéraires de randonnée",
+    "exploreMore": "Explorer plus d'itinéraires",
+    "routes": "itinéraires"
+  },
+  "communities": {
+    "title": "Rejoignez votre communauté locale",
+    "description": "Trouvez des compagnons d'aventure dans votre ville. Nos communautés organisent des rencontres régulières, partagent des conseils sur les sentiers locaux et créent des amitiés durables.",
+    "viewAll": "Voir toutes les communautés"
+  },
+  "footer": {
+    "tagline": "Connecter les passionnés de plein air dans le monde entier depuis 2020.",
+    "explore": "Explorer",
+    "company": "Entreprise",
+    "legal": "Légal",
+    "events": "Événements",
+    "routes": "Itinéraires",
+    "communities": "Communautés",
+    "activities": "Activités",
+    "aboutUs": "À propos de nous",
+    "blog": "Blog",
+    "careers": "Carrières",
+    "contact": "Contact",
+    "privacyPolicy": "Politique de confidentialité",
+    "termsOfService": "Conditions d'utilisation",
+    "cookiePolicy": "Politique de cookies",
+    "imprint": "Mentions légales",
+    "copyright": "© 2026 Hiking Buddies. Tous droits réservés."
+  },
   "events": {
     "pageTitle": "Événements",
     "filters": {
@@ -18,12 +88,17 @@
     },
     "status": {
       "full": "Complet",
-      "spotsLeft": "places restantes"
+      "spotsLeft": "places restantes",
+      "available": "disponibles",
+      "coming": "inscrits",
+      "waitlist": "en attente"
     },
     "transport": {
       "train": "Train",
       "car": "Voiture",
-      "bus": "Bus"
+      "bus": "Bus",
+      "carpool": "Covoiturage",
+      "noTransport": "Sans transport"
     },
     "levels": {
       "easy": "Facile",
@@ -31,11 +106,53 @@
       "hard": "Difficile"
     }
   },
+  "routes": {
+    "pageTitle": "Bibliothèque d'itinéraires",
+    "pageDescription": "Découvrez et explorez notre collection d'itinéraires de randonnée du monde entier.",
+    "filters": {
+      "title": "Filtres",
+      "difficulty": "Difficulté",
+      "technicalLevel": "Niveau technique",
+      "distance": "Distance",
+      "duration": "Durée",
+      "elevationGain": "Dénivelé positif",
+      "routeType": "Type d'itinéraire",
+      "highlights": "Points forts",
+      "features": "Caractéristiques",
+      "facilities": "Équipements",
+      "clearAll": "Effacer tous les filtres"
+    }
+  },
+  "profile": {
+    "reviews": "avis",
+    "showAll": "Voir tout",
+    "reviewsTitle": "AVIS DE {name} ({count})",
+    "activitiesTitle": "ACTIVITÉS DE {name}",
+    "tabs": {
+      "upcoming": "À venir",
+      "recent": "Récent",
+      "past": "Passé",
+      "organised": "Organisé",
+      "lastMonth": "MOIS DERNIER",
+      "allTime": "TOUT TEMPS",
+      "lastYear": "ANNÉE DERNIÈRE"
+    },
+    "stats": {
+      "distance": "Distance",
+      "elevation": "Dénivelé"
+    },
+    "noActivities": {
+      "recent": "Aucune activité récente",
+      "past": "Les activités passées seront affichées ici",
+      "organised": "Les activités organisées seront affichées ici"
+    }
+  },
   "common": {
     "loading": "Chargement...",
     "error": "Une erreur s'est produite",
     "noResults": "Aucun résultat trouvé",
     "seeAll": "Voir tout",
-    "viewDetails": "Voir les détails"
+    "viewDetails": "Voir les détails",
+    "by": "par"
   }
 }
