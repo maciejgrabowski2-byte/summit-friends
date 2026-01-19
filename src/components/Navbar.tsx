@@ -1,4 +1,4 @@
-import { Search, Menu, X, User, LogOut } from "lucide-react";
+import { Search, Menu, X, User, LogOut, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -9,11 +9,20 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useTranslation, Locale } from "@/hooks/useTranslation";
+
+const languageNames: Record<Locale, string> = {
+  en: "English",
+  fr: "Français",
+  it: "Italiano",
+  es: "Español",
+};
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const { locale, setLocale } = useTranslation();
 
   const navLinks = [
     { href: "/events", label: "Events" },
@@ -75,6 +84,28 @@ const Navbar = () => {
             <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
               <Search className="w-5 h-5" />
             </Button>
+            
+            {/* Language Selector */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
+                  <Globe className="w-5 h-5" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-36 bg-background border border-border z-50">
+                {(Object.keys(languageNames) as Locale[]).map((lang) => (
+                  <DropdownMenuItem 
+                    key={lang}
+                    onClick={() => setLocale(lang)}
+                    className={locale === lang ? "bg-muted font-medium" : ""}
+                  >
+                    {languageNames[lang]}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {/* User Menu */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Avatar className="w-8 h-8 cursor-pointer">
@@ -82,7 +113,7 @@ const Navbar = () => {
                   <AvatarFallback>U</AvatarFallback>
                 </Avatar>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-48">
+              <DropdownMenuContent align="end" className="w-48 bg-background border border-border z-50">
                 <DropdownMenuItem onClick={() => navigate('/userprofile')}>
                   <User className="w-4 h-4 mr-2" />
                   User profile
@@ -136,6 +167,27 @@ const Navbar = () => {
               <Button variant="ghost" className="text-sm font-medium w-fit">
                 Create event
               </Button>
+              
+              {/* Mobile Language Selector */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="text-sm font-medium w-fit gap-2">
+                    <Globe className="w-4 h-4" />
+                    {languageNames[locale]}
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-36 bg-background border border-border z-50">
+                  {(Object.keys(languageNames) as Locale[]).map((lang) => (
+                    <DropdownMenuItem 
+                      key={lang}
+                      onClick={() => setLocale(lang)}
+                      className={locale === lang ? "bg-muted font-medium" : ""}
+                    >
+                      {languageNames[lang]}
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           </div>
         )}
