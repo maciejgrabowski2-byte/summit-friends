@@ -27,17 +27,19 @@ export function DetailViewLayout({
 
       <div className="flex flex-col lg:flex-row gap-4 md:gap-6 lg:gap-8">
         {/* Left column: Gallery/Map */}
-        <div className="w-full lg:w-auto">
+        <div className="w-full lg:w-48 lg:flex-shrink-0">
           {leftColumn}
         </div>
 
         {/* Middle column: Main Content */}
-        <div className="flex-1 min-w-0 max-w-3xl">
+        <div className="w-full lg:w-80 xl:w-96 lg:flex-shrink-0">
           {mainContent}
         </div>
 
         {/* Right column: Sidebar */}
-        {sidebar}
+        <div className="w-full lg:w-80 xl:w-96 lg:flex-shrink-0">
+          {sidebar}
+        </div>
       </div>
     </div>
   );
