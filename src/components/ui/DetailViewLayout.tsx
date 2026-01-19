@@ -25,9 +25,9 @@ export function DetailViewLayout({
         </div>
       )}
 
-      <div className="flex flex-col lg:flex-row gap-4 md:gap-6 lg:gap-8">
+      <div className="flex flex-col lg:flex-row gap-4 md:gap-6 lg:gap-8 lg:justify-center">
         {/* Left column: Gallery/Map */}
-        <div className="w-full lg:w-56 xl:w-64 lg:flex-shrink-0">
+        <div className="w-full lg:w-64 xl:w-72 lg:flex-shrink-0">
           {leftColumn}
         </div>
 
