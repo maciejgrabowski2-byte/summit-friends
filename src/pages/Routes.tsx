@@ -1,5 +1,4 @@
 import { useState, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import RoutesFilters, { FiltersState } from "@/components/routes/RoutesFilters";
@@ -8,7 +7,8 @@ import { mockRoutes, Route } from "@/data/mockRoutes";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { MapPin, X } from "lucide-react";
-import { toast } from "@/hooks/use-toast";
+import FullScreenModal from "@/components/ui/FullScreenModal";
+import RouteDetails from "@/components/routes/details/RouteDetails";
 
 const initialFilters: FiltersState = {
   difficulty: [],
@@ -23,9 +23,8 @@ const initialFilters: FiltersState = {
 };
 
 const Routes = () => {
-  const navigate = useNavigate();
   const [filters, setFilters] = useState<FiltersState>(initialFilters);
-  const [selectedRoute, setSelectedRoute] = useState<Route | null>(null);
+  const [selectedRouteId, setSelectedRouteId] = useState<string | null>(null);
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
 
   const filteredRoutes = useMemo(() => {
@@ -80,11 +79,11 @@ const Routes = () => {
   }, [filters]);
 
   const handleSelectRoute = (route: Route) => {
-    navigate(`/routes/${route.id}`);
+    setSelectedRouteId(route.id);
   };
 
-  const handleClearSelection = () => {
-    setSelectedRoute(null);
+  const handleCloseModal = () => {
+    setSelectedRouteId(null);
   };
 
   const handleResetFilters = () => {
@@ -110,24 +109,6 @@ const Routes = () => {
               Discover {mockRoutes.length} hiking routes across Europe
             </p>
           </div>
-
-          {/* Selected Route Banner */}
-          {selectedRoute && (
-            <div className="mb-6 p-4 bg-primary/10 border border-primary/20 rounded-xl flex items-center justify-between animate-fade-in">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
-                  <MapPin className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <p className="text-sm text-muted-foreground">Selected route</p>
-                  <p className="font-semibold text-foreground">{selectedRoute.name}</p>
-                </div>
-              </div>
-              <Button variant="ghost" size="icon" onClick={handleClearSelection}>
-                <X className="w-5 h-5" />
-              </Button>
-            </div>
-          )}
 
           {/* Content with inline filter sidebar */}
           <div className="flex">
@@ -160,7 +141,7 @@ const Routes = () => {
               {/* Routes Grid */}
               <RoutesList
                 routes={filteredRoutes}
-                selectedRoute={selectedRoute}
+                selectedRoute={null}
                 onSelectRoute={handleSelectRoute}
                 isFiltersOpen={isFiltersOpen}
               />
@@ -170,6 +151,11 @@ const Routes = () => {
       </main>
 
       <Footer />
+
+      {/* Route Details Modal */}
+      <FullScreenModal isOpen={!!selectedRouteId} onClose={handleCloseModal}>
+        {selectedRouteId && <RouteDetails routeId={selectedRouteId} />}
+      </FullScreenModal>
     </div>
   );
 };

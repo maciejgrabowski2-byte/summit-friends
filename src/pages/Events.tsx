@@ -1,10 +1,23 @@
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import EventsList from "@/components/events/EventsList";
 import EventsSidebar from "@/components/events/EventsSidebar";
 import EventsFilters from "@/components/events/EventsFilters";
+import FullScreenModal from "@/components/ui/FullScreenModal";
+import EventDetails from "@/components/events/details/EventDetails";
 
 const Events = () => {
+  const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
+
+  const handleEventClick = (eventId: string | number) => {
+    setSelectedEventId(String(eventId));
+  };
+
+  const handleCloseModal = () => {
+    setSelectedEventId(null);
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -17,7 +30,7 @@ const Events = () => {
             {/* Main Content */}
             <div className="flex-1 min-w-0 overflow-x-auto">
               <EventsFilters />
-              <EventsList />
+              <EventsList onEventClick={handleEventClick} />
             </div>
             
             {/* Sidebar */}
@@ -29,6 +42,11 @@ const Events = () => {
       </main>
       
       <Footer />
+
+      {/* Event Details Modal */}
+      <FullScreenModal isOpen={!!selectedEventId} onClose={handleCloseModal}>
+        <EventDetails />
+      </FullScreenModal>
     </div>
   );
 };

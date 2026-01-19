@@ -7,8 +7,6 @@ import { EventSidebar } from "./EventSidebar";
 export function EventDetails() {
   return (
     <DetailViewLayout
-      backPath="/events"
-      backLabel="Back to events"
       leftColumn={<EventGallery />}
       mainContent={<EventInfo />}
       sidebar={<EventSidebar />}

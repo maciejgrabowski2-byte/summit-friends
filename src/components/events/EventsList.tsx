@@ -1,12 +1,13 @@
-import { useNavigate } from "react-router-dom";
 import EventCard from "./EventCard";
 import { eventsListData } from "@/data/mockEvents";
 
-const EventsList = () => {
-  const navigate = useNavigate();
+interface EventsListProps {
+  onEventClick?: (eventId: string | number) => void;
+}
 
+const EventsList = ({ onEventClick }: EventsListProps) => {
   const handleEventClick = (eventId: string | number) => {
-    navigate(`/events/${eventId}`);
+    onEventClick?.(eventId);
   };
 
   return (
