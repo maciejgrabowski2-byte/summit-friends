@@ -1,7 +1,6 @@
 import EventCard from "./EventCard";
 import { eventsListData } from "@/data/mockEvents";
 import { useTranslation } from "@/hooks/useTranslation";
-import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 interface EventsListProps {
   onEventClick?: (eventId: string | number) => void;
@@ -9,14 +8,13 @@ interface EventsListProps {
 
 const EventsList = ({ onEventClick }: EventsListProps) => {
   const { t } = useTranslation();
-  const [parent] = useAutoAnimate({ duration: 300 });
 
   const handleEventClick = (eventId: string | number) => {
     onEventClick?.(eventId);
   };
 
   return (
-    <div ref={parent} className="space-y-8">
+    <div className="space-y-8">
       {Object.entries(eventsListData).map(([dateGroup, events]) => (
         <div key={dateGroup}>
           {/* Date Header */}

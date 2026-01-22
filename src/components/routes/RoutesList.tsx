@@ -1,7 +1,6 @@
 import { Route } from "@/data/mockRoutes";
 import RouteCard from "./RouteCard";
 import { Mountain } from "lucide-react";
-import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 interface RoutesListProps {
   routes: Route[];
@@ -11,8 +10,6 @@ interface RoutesListProps {
 }
 
 const RoutesList = ({ routes, selectedRoute, onSelectRoute, isFiltersOpen = false }: RoutesListProps) => {
-  const [parent] = useAutoAnimate({ duration: 300 });
-
   if (routes.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-16 text-center">
@@ -30,7 +27,7 @@ const RoutesList = ({ routes, selectedRoute, onSelectRoute, isFiltersOpen = fals
   }
 
   return (
-    <div ref={parent} className={`grid grid-cols-1 gap-4 md:gap-6 ${isFiltersOpen ? 'sm:grid-cols-1 md:grid-cols-2' : 'sm:grid-cols-2 lg:grid-cols-3'}`}>
+    <div className={`grid grid-cols-1 gap-4 md:gap-6 ${isFiltersOpen ? 'sm:grid-cols-1 md:grid-cols-2' : 'sm:grid-cols-2 lg:grid-cols-3'}`}>
       {routes.map((route) => (
         <RouteCard
           key={route.id}
