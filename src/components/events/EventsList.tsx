@@ -10,7 +10,6 @@ interface EventsListProps {
 const EventsList = ({ onEventClick }: EventsListProps) => {
   const { t } = useTranslation();
   const [parent] = useAutoAnimate({ duration: 300 });
-  const [eventsParent] = useAutoAnimate({ duration: 250 });
 
   const handleEventClick = (eventId: string | number) => {
     onEventClick?.(eventId);
@@ -43,7 +42,7 @@ const EventsList = ({ onEventClick }: EventsListProps) => {
           </h2>
 
           {/* Events */}
-          <div ref={eventsParent} className="space-y-4">
+          <div className="space-y-4">
             {events.map((event) => (
               <EventCard 
                 key={event.id} 
