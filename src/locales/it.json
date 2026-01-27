@@ -154,5 +154,39 @@
     "seeAll": "Vedi tutto",
     "viewDetails": "Vedi dettagli",
     "by": "di"
+  },
+  "createEvent": {
+    "back": "Indietro",
+    "continue": "Continua",
+    "unsavedChangesTitle": "Hai modifiche non salvate",
+    "unsavedChangesDescription": "Cosa vuoi fare?",
+    "continueEditing": "Continua a modificare",
+    "discard": "Annulla",
+    "activities": {
+      "hiking": "Escursionismo",
+      "cycling": "Ciclismo",
+      "climbing": "Arrampicata",
+      "skiing": "Sci",
+      "bouldering": "Boulder",
+      "social": "Sociale"
+    },
+    "step1": {
+      "title": "Che tipo di avventura?",
+      "subtitle": "Scegli il tipo di attività per il tuo evento"
+    },
+    "step2": {
+      "title": "Scegli un percorso per il tuo gruppo",
+      "subtitle": "Seleziona un percorso esistente o creane uno nuovo",
+      "placeholder": "Selezione percorso in arrivo..."
+    },
+    "step3": {
+      "title": "Quando partite?",
+      "subtitle": "Scegli una data e un orario che vadano bene per il tuo gruppo",
+      "timeLabel": "Orario di partenza",
+      "timePlaceholder": "Seleziona un orario",
+      "selectedDateTime": "La tua avventura è programmata per:",
+      "at": "alle",
+      "createEvent": "Crea evento"
+    }
   }
 }
