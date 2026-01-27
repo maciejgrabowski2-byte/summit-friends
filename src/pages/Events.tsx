@@ -48,9 +48,11 @@ const Events = () => {
       <Footer />
 
       {/* Event Details Modal */}
-      <FullScreenModal isOpen={!!selectedEventId} onClose={handleCloseModal}>
-        <EventDetails />
-      </FullScreenModal>
+      {selectedEventId && (
+        <FullScreenModal isOpen={!!selectedEventId} onClose={handleCloseModal}>
+          <EventDetails eventId={selectedEventId} />
+        </FullScreenModal>
+      )}
     </div>
   );
 };

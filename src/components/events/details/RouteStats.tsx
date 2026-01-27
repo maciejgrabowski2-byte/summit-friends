@@ -1,5 +1,10 @@
 import * as React from "react";
 import { MoveHorizontal, TrendingUp, TrendingDown, Mountain, Clock, Star } from "lucide-react";
+import { Event } from "@/types/event";
+
+interface RouteStatsProps {
+  event: Event;
+}
 
 interface StatCardProps {
   icon: React.ReactNode;
@@ -22,7 +27,16 @@ function StatCard({ icon, label, value, unit }: StatCardProps) {
   );
 }
 
-export function RouteStats() {
+export function RouteStats({ event }: RouteStatsProps) {
+  // Parse distance value (e.g., "18km" -> "18")
+  const distanceValue = event.distance?.replace(/[^0-9.]/g, '') || '-';
+  
+  // Parse elevation value (e.g., "1982m" -> "1982")
+  const elevationValue = event.elevation?.replace(/[^0-9.]/g, '') || '-';
+  
+  // Parse total height value
+  const totalHeightValue = event.totalHeight?.replace(/[^0-9.]/g, '') || '-';
+
   return (
     <section className="flex flex-col gap-4 items-start w-full">
       <h2 className="text-xl font-bold text-foreground">Route details</h2>
@@ -30,36 +44,35 @@ export function RouteStats() {
         <StatCard 
           icon={<MoveHorizontal className="w-5 h-5" />}
           label="Distance" 
-          value="29" 
+          value={distanceValue} 
           unit="km"
         />
         <StatCard 
           icon={<TrendingUp className="w-5 h-5" />}
-          label="Ascent" 
-          value="500" 
+          label="Elevation" 
+          value={elevationValue} 
           unit="m"
         />
         <StatCard 
           icon={<TrendingDown className="w-5 h-5" />}
-          label="Descent" 
-          value="400" 
+          label={event.heightType === 'descent' ? 'Descent' : 'Total Height'} 
+          value={totalHeightValue} 
           unit="m"
         />
         <StatCard 
           icon={<Mountain className="w-5 h-5" />}
-          label="Highest point" 
-          value="1560" 
-          unit="m"
+          label="Difficulty" 
+          value={event.activityBadge || event.difficulty || '-'} 
         />
         <StatCard 
           icon={<Clock className="w-5 h-5" />}
           label="Duration" 
-          value="2:29" 
+          value={event.duration || '-'} 
         />
         <StatCard 
           icon={<Star className="w-5 h-5" />}
           label="Rating" 
-          value="650" 
+          value={event.rating?.toString() || '-'} 
         />
       </div>
     </section>
