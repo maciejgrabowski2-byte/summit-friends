@@ -52,7 +52,13 @@ function getStoredData(): CreateEventData {
 
 function storeData(data: CreateEventData) {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    const hasData = data.activity || data.routeId || data.date || data.time;
+    if (hasData) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    } else {
+      // Clear storage if no meaningful data
+      localStorage.removeItem(STORAGE_KEY);
+    }
   } catch {
     // Ignore storage errors
   }
