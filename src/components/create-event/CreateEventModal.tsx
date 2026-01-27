@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { useQueryClient } from "@tanstack/react-query";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -115,6 +116,7 @@ export function CreateEventModal({ isOpen, onClose }: CreateEventModalProps) {
   const [showDiscardDialog, setShowDiscardDialog] = React.useState(false);
   const [isPublishing, setIsPublishing] = React.useState(false);
   const { toast } = useToast();
+  const queryClient = useQueryClient();
 
   // Check if user has entered any data
   const hasUnsavedChanges = React.useMemo(() => {
@@ -329,7 +331,14 @@ export function CreateEventModal({ isOpen, onClose }: CreateEventModalProps) {
         description: "Your event has been published successfully.",
       });
 
+      // Invalidate events queries to refresh the list
+      await queryClient.invalidateQueries({ queryKey: ["events"] });
+
       clearStoredData();
+      setData({});
+      setStep(STEP_ACTIVITY);
+      setIsPublishing(false);
+      onClose();
       setData({});
       setStep(STEP_ACTIVITY);
       setIsPublishing(false);
