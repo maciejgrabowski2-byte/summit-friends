@@ -14,7 +14,102 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      events: {
+        Row: {
+          activity: string | null
+          activity_badge: string | null
+          created_at: string
+          departure_location: string | null
+          difficulty: string | null
+          distance: string | null
+          duration: string | null
+          elevation: string | null
+          event_date: string
+          event_time: string | null
+          gallery_images: string[] | null
+          height_type: string | null
+          id: string
+          image_url: string | null
+          is_full: boolean | null
+          is_sold_out: boolean | null
+          location: string | null
+          max_participants: number | null
+          organizer: string
+          organizer_avatar: string | null
+          participant_avatars: string[] | null
+          rating: number | null
+          spots_available: number | null
+          status: string | null
+          title: string
+          total_height: string | null
+          transport: string | null
+          updated_at: string
+          waitlist_count: number | null
+        }
+        Insert: {
+          activity?: string | null
+          activity_badge?: string | null
+          created_at?: string
+          departure_location?: string | null
+          difficulty?: string | null
+          distance?: string | null
+          duration?: string | null
+          elevation?: string | null
+          event_date: string
+          event_time?: string | null
+          gallery_images?: string[] | null
+          height_type?: string | null
+          id?: string
+          image_url?: string | null
+          is_full?: boolean | null
+          is_sold_out?: boolean | null
+          location?: string | null
+          max_participants?: number | null
+          organizer: string
+          organizer_avatar?: string | null
+          participant_avatars?: string[] | null
+          rating?: number | null
+          spots_available?: number | null
+          status?: string | null
+          title: string
+          total_height?: string | null
+          transport?: string | null
+          updated_at?: string
+          waitlist_count?: number | null
+        }
+        Update: {
+          activity?: string | null
+          activity_badge?: string | null
+          created_at?: string
+          departure_location?: string | null
+          difficulty?: string | null
+          distance?: string | null
+          duration?: string | null
+          elevation?: string | null
+          event_date?: string
+          event_time?: string | null
+          gallery_images?: string[] | null
+          height_type?: string | null
+          id?: string
+          image_url?: string | null
+          is_full?: boolean | null
+          is_sold_out?: boolean | null
+          location?: string | null
+          max_participants?: number | null
+          organizer?: string
+          organizer_avatar?: string | null
+          participant_avatars?: string[] | null
+          rating?: number | null
+          spots_available?: number | null
+          status?: string | null
+          title?: string
+          total_height?: string | null
+          transport?: string | null
+          updated_at?: string
+          waitlist_count?: number | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
