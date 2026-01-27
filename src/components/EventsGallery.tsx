@@ -2,12 +2,14 @@ import { useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import EventCard from "@/components/events/EventCard";
-import { galleryEvents } from "@/data/mockEvents";
+import { useGalleryEvents } from "@/hooks/useEvents";
 import { useTranslation } from "@/hooks/useTranslation";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const EventsGallery = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const { t } = useTranslation();
+  const { data: galleryEvents, isLoading } = useGalleryEvents();
 
   const scroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
@@ -53,15 +55,23 @@ const EventsGallery = () => {
           ref={scrollRef}
           className="flex gap-6 overflow-x-auto scrollbar-hide pb-4 -mx-4 px-4"
         >
-          {galleryEvents.map((event, index) => (
-            <div
-              key={event.id}
-              className="animate-fade-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <EventCard event={event} variant="card" />
-            </div>
-          ))}
+          {isLoading ? (
+            <>
+              {[1, 2, 3, 4].map((i) => (
+                <Skeleton key={i} className="w-80 h-96 rounded-xl shrink-0" />
+              ))}
+            </>
+          ) : (
+            galleryEvents?.map((event, index) => (
+              <div
+                key={event.id}
+                className="animate-fade-in"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <EventCard event={event} variant="card" />
+              </div>
+            ))
+          )}
         </div>
 
         <div className="text-center mt-8">
