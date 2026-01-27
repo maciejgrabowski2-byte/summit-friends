@@ -1,5 +1,5 @@
 import * as React from "react";
-import { format } from "date-fns";
+import { format, nextSunday } from "date-fns";
 import { Calendar } from "@/components/ui/calendar";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -32,9 +32,12 @@ const generateTimeOptions = () => {
 
 const timeOptions = generateTimeOptions();
 
+// Get the next Sunday from today
+const getDefaultDate = () => nextSunday(new Date());
+
 export function CreateEventStep3({ selectedDate, selectedTime, onContinue }: CreateEventStep3Props) {
-  const [date, setDate] = React.useState<Date | undefined>(selectedDate);
-  const [time, setTime] = React.useState<string>(selectedTime || "08:00");
+  const [date, setDate] = React.useState<Date | undefined>(selectedDate || getDefaultDate());
+  const [time, setTime] = React.useState<string>(selectedTime || "09:00");
 
   const canContinue = date && time;
 
