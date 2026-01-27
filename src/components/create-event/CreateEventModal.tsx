@@ -218,27 +218,30 @@ export function CreateEventModal({ isOpen, onClose }: CreateEventModalProps) {
 
         {/* Content */}
         <div className="h-full overflow-y-auto pt-16">
-          <div className="max-w-[800px] w-full mx-auto px-4 sm:px-6 md:px-8 py-8 md:py-12">
-            {step === 1 && (
-              <CreateEventStep1
-                selectedActivity={data.activity}
-                onContinue={handleStep1Continue}
-              />
-            )}
-            {step === 2 && (
+          {step === 2 ? (
+            <div className="w-full px-4 sm:px-6 md:px-8 py-8 md:py-12">
               <CreateEventStep2
                 selectedRouteId={data.routeId}
                 onContinue={handleStep2Continue}
               />
-            )}
-            {step === 3 && (
-              <CreateEventStep3
-                selectedDate={data.date}
-                selectedTime={data.time}
-                onContinue={handleStep3Continue}
-              />
-            )}
-          </div>
+            </div>
+          ) : (
+            <div className="max-w-[800px] w-full mx-auto px-4 sm:px-6 md:px-8 py-8 md:py-12">
+              {step === 1 && (
+                <CreateEventStep1
+                  selectedActivity={data.activity}
+                  onContinue={handleStep1Continue}
+                />
+              )}
+              {step === 3 && (
+                <CreateEventStep3
+                  selectedDate={data.date}
+                  selectedTime={data.time}
+                  onContinue={handleStep3Continue}
+                />
+              )}
+            </div>
+          )}
         </div>
       </div>
 
