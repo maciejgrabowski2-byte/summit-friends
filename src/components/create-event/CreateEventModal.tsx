@@ -1,8 +1,11 @@
 import * as React from "react";
 import { createPortal } from "react-dom";
+import { format } from "date-fns";
 import { X, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -111,6 +114,7 @@ export function CreateEventModal({ isOpen, onClose }: CreateEventModalProps) {
   const [data, setData] = React.useState<CreateEventData>(getStoredData);
   const [showDiscardDialog, setShowDiscardDialog] = React.useState(false);
   const [isPublishing, setIsPublishing] = React.useState(false);
+  const { toast } = useToast();
 
   // Check if user has entered any data
   const hasUnsavedChanges = React.useMemo(() => {
@@ -281,17 +285,64 @@ export function CreateEventModal({ isOpen, onClose }: CreateEventModalProps) {
 
   const handlePublish = async () => {
     setIsPublishing(true);
-    // For now, just log and close - future: submit to database
-    console.log("Publishing event:", data);
     
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    
-    clearStoredData();
-    setData({});
-    setStep(STEP_ACTIVITY);
-    setIsPublishing(false);
-    onClose();
+    try {
+      // Build transport info string based on transport type
+      let transportInfo: string | null = data.transportType || null;
+      if (data.transportType === "public" && data.meetingPoint) {
+        transportInfo = `Public transport - Meeting at: ${data.meetingPoint}`;
+        if (data.ticketCost) transportInfo += ` | Ticket: ${data.ticketCost}`;
+      } else if (data.transportType === "car" && data.pickUpLocation) {
+        transportInfo = `By car - Pick-up: ${data.pickUpLocation}`;
+        if (data.fuelCost) transportInfo += ` | Fuel: ${data.fuelCost}`;
+      }
+
+      const eventData = {
+        title: data.eventName || "Untitled Event",
+        event_date: data.date ? format(data.date, "yyyy-MM-dd") : format(new Date(), "yyyy-MM-dd"),
+        event_time: data.time || null,
+        activity: data.activity || "Hiking",
+        max_participants: data.maxParticipants || null,
+        spots_available: data.maxParticipants || null,
+        description: data.description || null,
+        transport: transportInfo,
+        departure_location: data.meetingPoint || data.pickUpLocation || null,
+        organizer: "Event Organizer", // Placeholder until auth is implemented
+        status: "Open",
+      };
+
+      const { error } = await supabase.from("events").insert(eventData);
+
+      if (error) {
+        console.error("Error creating event:", error);
+        toast({
+          title: "Error creating event",
+          description: error.message,
+          variant: "destructive",
+        });
+        setIsPublishing(false);
+        return;
+      }
+
+      toast({
+        title: "Event created!",
+        description: "Your event has been published successfully.",
+      });
+
+      clearStoredData();
+      setData({});
+      setStep(STEP_ACTIVITY);
+      setIsPublishing(false);
+      onClose();
+    } catch (err) {
+      console.error("Unexpected error:", err);
+      toast({
+        title: "Error creating event",
+        description: "An unexpected error occurred. Please try again.",
+        variant: "destructive",
+      });
+      setIsPublishing(false);
+    }
   };
 
   if (!isOpen) return null;

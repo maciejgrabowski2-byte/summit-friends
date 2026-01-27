@@ -20,6 +20,7 @@ export type Database = {
           activity_badge: string | null
           created_at: string
           departure_location: string | null
+          description: string | null
           difficulty: string | null
           distance: string | null
           duration: string | null
@@ -51,6 +52,7 @@ export type Database = {
           activity_badge?: string | null
           created_at?: string
           departure_location?: string | null
+          description?: string | null
           difficulty?: string | null
           distance?: string | null
           duration?: string | null
@@ -82,6 +84,7 @@ export type Database = {
           activity_badge?: string | null
           created_at?: string
           departure_location?: string | null
+          description?: string | null
           difficulty?: string | null
           distance?: string | null
           duration?: string | null
