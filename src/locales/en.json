@@ -154,5 +154,40 @@
     "seeAll": "See all",
     "viewDetails": "View details",
     "by": "by"
+  },
+  "createEvent": {
+    "back": "Back",
+    "continue": "Continue",
+    "stepOf": "{current} of {total}",
+    "unsavedChangesTitle": "You have unsaved changes",
+    "unsavedChangesDescription": "What would you like to do?",
+    "continueEditing": "Continue editing",
+    "discard": "Discard",
+    "activities": {
+      "hiking": "Hiking",
+      "cycling": "Cycling",
+      "climbing": "Climbing",
+      "skiing": "Skiing",
+      "bouldering": "Bouldering",
+      "social": "Social"
+    },
+    "step1": {
+      "title": "What kind of adventure?",
+      "subtitle": "Choose the activity type for your event"
+    },
+    "step2": {
+      "title": "Pick a route for your group",
+      "subtitle": "Select an existing route or create a new one",
+      "placeholder": "Route selection coming soon..."
+    },
+    "step3": {
+      "title": "When are you heading out?",
+      "subtitle": "Pick a date and time that works best for your crew",
+      "timeLabel": "Start time",
+      "timePlaceholder": "Select a time",
+      "selectedDateTime": "Your adventure is set for:",
+      "at": "at",
+      "createEvent": "Create event"
+    }
   }
 }

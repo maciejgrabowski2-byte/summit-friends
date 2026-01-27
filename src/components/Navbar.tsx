@@ -1,4 +1,4 @@
-import { Search, Menu, X, User, LogOut, Globe } from "lucide-react";
+import { Search, Menu, X, User, LogOut, Globe, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -10,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useTranslation, Locale } from "@/hooks/useTranslation";
+import CreateEventModal from "@/components/create-event/CreateEventModal";
 
 const languageNames: Record<Locale, string> = {
   en: "English",
@@ -20,6 +21,7 @@ const languageNames: Record<Locale, string> = {
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isCreateEventOpen, setIsCreateEventOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const { locale, setLocale, t } = useTranslation();
@@ -78,7 +80,11 @@ const Navbar = () => {
 
           {/* Actions */}
           <div className="hidden lg:flex items-center gap-3">
-            <Button variant="ghost" className="text-sm font-medium text-foreground">
+            <Button 
+              onClick={() => setIsCreateEventOpen(true)}
+              className="text-sm font-medium gap-2"
+            >
+              <Plus className="w-4 h-4" />
               {t('nav.createEvent')}
             </Button>
             <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
@@ -164,7 +170,14 @@ const Navbar = () => {
                   </Link>
                 )
               ))}
-              <Button variant="ghost" className="text-sm font-medium w-fit">
+              <Button 
+                onClick={() => {
+                  setIsOpen(false);
+                  setIsCreateEventOpen(true);
+                }}
+                className="text-sm font-medium w-fit gap-2"
+              >
+                <Plus className="w-4 h-4" />
                 {t('nav.createEvent')}
               </Button>
               
@@ -192,6 +205,12 @@ const Navbar = () => {
           </div>
         )}
       </div>
+
+      {/* Create Event Modal */}
+      <CreateEventModal 
+        isOpen={isCreateEventOpen} 
+        onClose={() => setIsCreateEventOpen(false)} 
+      />
     </nav>
   );
 };
