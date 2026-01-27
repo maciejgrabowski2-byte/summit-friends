@@ -1,22 +1,20 @@
 import { Mountain, Bike, Axe, Snowflake, Circle, Users } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { useTranslation } from "@/hooks/useTranslation";
 import type { ActivityType } from "./CreateEventModal";
 
 interface ActivityOption {
   id: ActivityType;
-  labelKey: string;
+  label: string;
   icon: React.ElementType;
 }
 
 const activities: ActivityOption[] = [
-  { id: "hiking", labelKey: "createEvent.activities.hiking", icon: Mountain },
-  { id: "cycling", labelKey: "createEvent.activities.cycling", icon: Bike },
-  { id: "climbing", labelKey: "createEvent.activities.climbing", icon: Axe },
-  { id: "skiing", labelKey: "createEvent.activities.skiing", icon: Snowflake },
-  { id: "bouldering", labelKey: "createEvent.activities.bouldering", icon: Circle },
-  { id: "social", labelKey: "createEvent.activities.social", icon: Users },
+  { id: "hiking", label: "Hiking", icon: Mountain },
+  { id: "cycling", label: "Cycling", icon: Bike },
+  { id: "climbing", label: "Climbing", icon: Axe },
+  { id: "skiing", label: "Skiing", icon: Snowflake },
+  { id: "bouldering", label: "Bouldering", icon: Circle },
+  { id: "social", label: "Social", icon: Users },
 ];
 
 interface CreateEventStep1Props {
@@ -25,16 +23,14 @@ interface CreateEventStep1Props {
 }
 
 export function CreateEventStep1({ selectedActivity, onContinue }: CreateEventStep1Props) {
-  const { t } = useTranslation();
-
   return (
     <div className="space-y-8">
       <div className="text-center space-y-2">
         <h1 className="text-2xl sm:text-3xl font-bold text-foreground">
-          {t('createEvent.step1.title')}
+          What kind of adventure?
         </h1>
         <p className="text-muted-foreground">
-          {t('createEvent.step1.subtitle')}
+          Choose the activity type for your event
         </p>
       </div>
 
@@ -63,7 +59,7 @@ export function CreateEventStep1({ selectedActivity, onContinue }: CreateEventSt
                 "text-sm sm:text-base font-medium",
                 isSelected ? "text-primary" : "text-foreground"
               )}>
-                {t(activity.labelKey)}
+                {activity.label}
               </span>
             </button>
           );

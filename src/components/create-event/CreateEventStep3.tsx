@@ -11,7 +11,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
-import { useTranslation } from "@/hooks/useTranslation";
 
 interface CreateEventStep3Props {
   selectedDate?: Date;
@@ -34,7 +33,6 @@ const generateTimeOptions = () => {
 const timeOptions = generateTimeOptions();
 
 export function CreateEventStep3({ selectedDate, selectedTime, onContinue }: CreateEventStep3Props) {
-  const { t } = useTranslation();
   const [date, setDate] = React.useState<Date | undefined>(selectedDate);
   const [time, setTime] = React.useState<string>(selectedTime || "08:00");
 
@@ -50,10 +48,10 @@ export function CreateEventStep3({ selectedDate, selectedTime, onContinue }: Cre
     <div className="space-y-8">
       <div className="text-center space-y-2">
         <h1 className="text-2xl sm:text-3xl font-bold text-foreground">
-          {t('createEvent.step3.title')}
+          When are you heading out?
         </h1>
         <p className="text-muted-foreground">
-          {t('createEvent.step3.subtitle')}
+          Pick a date and time that works best for your crew
         </p>
       </div>
 
@@ -71,10 +69,10 @@ export function CreateEventStep3({ selectedDate, selectedTime, onContinue }: Cre
 
         {/* Time picker */}
         <div className="w-full max-w-xs space-y-2">
-          <Label htmlFor="time-select">{t('createEvent.step3.timeLabel')}</Label>
+          <Label htmlFor="time-select">Start time</Label>
           <Select value={time} onValueChange={setTime}>
             <SelectTrigger id="time-select" className="w-full">
-              <SelectValue placeholder={t('createEvent.step3.timePlaceholder')} />
+              <SelectValue placeholder="Select a time" />
             </SelectTrigger>
             <SelectContent>
               {timeOptions.map((timeOption) => (
@@ -90,10 +88,10 @@ export function CreateEventStep3({ selectedDate, selectedTime, onContinue }: Cre
         {date && (
           <div className="text-center p-4 bg-primary/10 rounded-lg">
             <p className="text-sm text-muted-foreground">
-              {t('createEvent.step3.selectedDateTime')}
+              Your adventure is set for:
             </p>
             <p className="text-lg font-semibold text-foreground">
-              {format(date, "EEEE, MMMM d, yyyy")} {t('createEvent.step3.at')} {time}
+              {format(date, "EEEE, MMMM d, yyyy")} at {time}
             </p>
           </div>
         )}
@@ -105,7 +103,7 @@ export function CreateEventStep3({ selectedDate, selectedTime, onContinue }: Cre
           size="lg"
           disabled={!canContinue}
         >
-          {t('createEvent.step3.createEvent')}
+          Create event
         </Button>
       </div>
     </div>
