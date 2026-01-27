@@ -206,11 +206,13 @@ const Navbar = () => {
         )}
       </div>
 
-      {/* Create Event Modal */}
-      <CreateEventModal 
-        isOpen={isCreateEventOpen} 
-        onClose={() => setIsCreateEventOpen(false)} 
-      />
+      {/* Create Event Modal - only render when open */}
+      {isCreateEventOpen && (
+        <CreateEventModal 
+          isOpen={isCreateEventOpen} 
+          onClose={() => setIsCreateEventOpen(false)} 
+        />
+      )}
     </nav>
   );
 };
