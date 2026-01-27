@@ -25,7 +25,7 @@ const RouteCard = ({ route, onSelect, isSelected }: RouteCardProps) => {
   return (
     <Card
       className={`cursor-pointer transition-all duration-300 hover:shadow-hover overflow-hidden group ${
-        isSelected ? "ring-2 ring-primary shadow-hover" : ""
+        isSelected ? "ring-1 ring-primary shadow-[0_4px_20px_-4px_hsl(var(--primary)/0.3)]" : ""
       }`}
       onClick={() => onSelect(route)}
     >
