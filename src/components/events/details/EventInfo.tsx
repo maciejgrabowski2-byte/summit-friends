@@ -3,39 +3,55 @@ import { Share2, Bookmark } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Divider } from "./Divider";
 import { RouteStats } from "./RouteStats";
+import { Event } from "@/types/event";
 
-function EventHeader() {
+interface EventInfoProps {
+  event: Event;
+}
+
+function EventHeader({ event }: { event: Event }) {
+  const formattedDate = event.date ? `${event.date}${event.day ? `, ${event.day}` : ''}` : 'Date TBD';
+  const formattedTime = event.time 
+    ? `${event.time} AM${event.duration ? ` - ${event.duration}` : ''}`
+    : 'Time TBD';
+
   return (
     <header className="flex flex-col gap-6 w-full">
       <div className="flex flex-col gap-1.5">
         <time className="text-lg font-bold text-foreground">
-          May 10, Sunday
+          {formattedDate}
         </time>
         <p className="text-sm font-bold text-muted-foreground">
-          06:40 AM - 17:00 PM
+          {formattedTime}
         </p>
       </div>
       
       <h1 className="text-2xl font-bold text-foreground">
-        Pottenstein ring: A land of caves and castles, rivers and rocks
+        {event.title}
       </h1>
       
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         <div className="flex flex-col gap-1">
           <p className="text-sm font-bold text-muted-foreground">Activity</p>
-          <p className="text-base text-foreground">Hiking</p>
+          <p className="text-base text-foreground">{event.activity || 'Hiking'}</p>
         </div>
         <div className="flex flex-col gap-1">
           <p className="text-sm font-bold text-muted-foreground">Difficulty</p>
-          <p className="text-base text-foreground">T3 Moderate</p>
+          <p className="text-base text-foreground">
+            {event.activityBadge || event.difficulty || 'Not specified'}
+          </p>
         </div>
         <div className="flex flex-col gap-1">
           <p className="text-sm font-bold text-muted-foreground">Departs from</p>
-          <p className="text-base text-foreground">Munich</p>
+          <p className="text-base text-foreground">
+            {event.departureLocation || 'TBD'}
+          </p>
         </div>
         <div className="flex flex-col gap-1">
           <p className="text-sm font-bold text-muted-foreground">Transport</p>
-          <p className="text-base text-foreground">Train, bus</p>
+          <p className="text-base text-foreground">
+            {event.transport || 'Not specified'}
+          </p>
         </div>
       </div>
 
@@ -48,8 +64,8 @@ function EventHeader() {
             <Bookmark className="w-4 h-4" />
           </Button>
         </div>
-        <Button className="px-6">
-          Join event
+        <Button className="px-6" disabled={event.isFull || event.soldOut}>
+          {event.isFull || event.soldOut ? 'Event Full' : 'Join event'}
         </Button>
       </div>
     </header>
@@ -61,12 +77,9 @@ function DescriptionSection() {
     <section className="flex flex-col gap-2 w-full">
       <h2 className="text-xl font-bold text-foreground">Description</h2>
       <p className="text-base leading-7 text-foreground">
-        Many poets and painters walked through the countryside of
-        Franconian Switzerland hundreds years ago and catched it in word
-        and on paintings. Franconian Switzerland is one of the largest
-        nature parks in Germany and a real hidden gem. The area is very
-        well known for its impressive caves, rock formations and green
-        scenery. Also, there are many medieval castles and ruins..
+        Join us for an exciting outdoor adventure! This event offers a great opportunity 
+        to explore nature, meet fellow enthusiasts, and challenge yourself with a 
+        memorable experience in the mountains.
       </p>
       <button className="text-base text-primary hover:underline self-start">
         Show more
@@ -75,31 +88,39 @@ function DescriptionSection() {
   );
 }
 
-function MeetingTransportSection() {
+function MeetingTransportSection({ event }: { event: Event }) {
   return (
     <section className="flex flex-col gap-4 w-full">
       <h2 className="text-xl font-bold text-foreground">
         Meeting and transport
       </h2>
       <p className="text-base leading-7 text-foreground">
-        We meet on platform and buy a group ticket all together.
+        We meet at the departure location and travel together.
       </p>
       <div className="grid grid-cols-2 gap-x-8 gap-y-4 pt-4">
         <div className="flex flex-col gap-1">
           <p className="text-sm font-bold text-muted-foreground">Meeting location</p>
-          <p className="text-base text-foreground">Munich HBF, Platform 29</p>
+          <p className="text-base text-foreground">
+            {event.departureLocation || 'TBD'}
+          </p>
         </div>
         <div className="flex flex-col gap-1">
           <p className="text-sm font-bold text-muted-foreground">Meeting time</p>
-          <p className="text-base text-foreground">6:40 AM</p>
+          <p className="text-base text-foreground">
+            {event.time ? `${event.time} AM` : 'TBD'}
+          </p>
         </div>
         <div className="flex flex-col gap-1">
           <p className="text-sm font-bold text-muted-foreground">Transport</p>
-          <p className="text-base text-foreground">Train, bus 145 to Lindau</p>
+          <p className="text-base text-foreground">
+            {event.transport || 'Own transport'}
+          </p>
         </div>
         <div className="flex flex-col gap-1">
-          <p className="text-sm font-bold text-muted-foreground">Ticket price</p>
-          <p className="text-base text-foreground">€16 per person</p>
+          <p className="text-sm font-bold text-muted-foreground">Duration</p>
+          <p className="text-base text-foreground">
+            {event.duration || 'Full day'}
+          </p>
         </div>
       </div>
     </section>
@@ -110,14 +131,14 @@ function EquipmentSection() {
   const equipmentLeft = [
     "Hiking boots",
     "Food and drinks",
-    "Cash for the ticket",
+    "Weather-appropriate clothing",
     "Headlamp (just in case)"
   ];
   
   const equipmentRight = [
-    "Helmet",
-    "Poles",
-    "Headlamp"
+    "First aid kit",
+    "Sun protection",
+    "Backpack"
   ];
 
   return (
@@ -139,17 +160,17 @@ function EquipmentSection() {
   );
 }
 
-export function EventInfo() {
+export function EventInfo({ event }: EventInfoProps) {
   return (
     <main className="flex flex-col gap-6 md:gap-8 w-full lg:max-w-[600px]">
-      <EventHeader />
+      <EventHeader event={event} />
       <Divider />
       <DescriptionSection />
-      <MeetingTransportSection />
+      <MeetingTransportSection event={event} />
       <Divider />
       <EquipmentSection />
       <Divider />
-      <RouteStats />
+      <RouteStats event={event} />
     </main>
   );
 }
