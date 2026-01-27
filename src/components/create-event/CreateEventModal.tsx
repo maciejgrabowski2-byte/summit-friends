@@ -244,7 +244,7 @@ export function CreateEventModal({ isOpen, onClose }: CreateEventModalProps) {
 
       {/* Discard confirmation dialog */}
       <AlertDialog open={showDiscardDialog} onOpenChange={setShowDiscardDialog}>
-        <AlertDialogContent>
+        <AlertDialogContent className="z-[200]">
           <AlertDialogHeader>
             <AlertDialogTitle>You have unsaved changes</AlertDialogTitle>
             <AlertDialogDescription>
