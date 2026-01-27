@@ -1,6 +1,7 @@
 import EventCard from "./EventCard";
-import { eventsListData } from "@/data/mockEvents";
+import { useEventsGroupedByDate } from "@/hooks/useEvents";
 import { useTranslation } from "@/hooks/useTranslation";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface EventsListProps {
   onEventClick?: (eventId: string | number) => void;
@@ -8,10 +9,44 @@ interface EventsListProps {
 
 const EventsList = ({ onEventClick }: EventsListProps) => {
   const { t } = useTranslation();
+  const { data: eventsListData, isLoading, error } = useEventsGroupedByDate();
 
   const handleEventClick = (eventId: string | number) => {
     onEventClick?.(eventId);
   };
+
+  if (isLoading) {
+    return (
+      <div className="space-y-8">
+        {[1, 2].map((group) => (
+          <div key={group}>
+            <Skeleton className="h-6 w-48 mb-4" />
+            <div className="space-y-4">
+              {[1, 2, 3].map((i) => (
+                <Skeleton key={i} className="h-24 w-full rounded-lg" />
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="text-center py-12 text-muted-foreground">
+        Failed to load events. Please try again later.
+      </div>
+    );
+  }
+
+  if (!eventsListData || Object.keys(eventsListData).length === 0) {
+    return (
+      <div className="text-center py-12 text-muted-foreground">
+        No upcoming events found.
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-8">
